@@ -1,8 +1,9 @@
 # Design: All Components Runnable + Example Showcase (G1)
 
 **Date:** 2026-07-13  
+**Status:** C1 implemented — all science IDs ok or explicit skip per docs/EXAMPLE_MATRIX.md
+**Date:** 2026-07-13  
 **Status:** Approved for implementation planning (C1→C2; G1 bar)
-**Goals alignment:** [`docs/GOALS.md`](../../GOALS.md) G1 (scientific soundness) + G2 (reusable components)  
 **Inventory:** [`FEATURES.md`](../../../FEATURES.md) · Assumptions: [`docs/ASSUMPTIONS.md`](../../ASSUMPTIONS.md) · Roadmap: [`docs/ACADEMIC_ROADMAP.md`](../../ACADEMIC_ROADMAP.md)
 
 ---

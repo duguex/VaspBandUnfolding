@@ -148,3 +148,4 @@ Needs external VASP outputs or cluster jobs: B1 recompute, O2 with Soc\*, X6, fu
 - [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md) — seminars, phases, coverage matrix  
 - [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md) — physics/numerics limits  
 - [`README.md`](README.md) · [`AGENTS.md`](AGENTS.md) · [`doc/VaspBandUnfolding.pdf`](doc/VaspBandUnfolding.pdf)
+- [`docs/EXAMPLE_MATRIX.md`](docs/EXAMPLE_MATRIX.md) — C1 example status per science ID
