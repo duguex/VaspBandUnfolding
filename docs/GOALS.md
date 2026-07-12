@@ -52,7 +52,13 @@ Success looks like: *another paper’s methods section can say “spectral weigh
 | **OS / arch** | Linux + typical HPC/login nodes first; no special support contract for abandoned platform stacks. |
 | **What we do *not* do** | CI matrices over many old pins; polyfills for removed stdlib/numpy APIs; “works on whatever was on the cluster in 2018.” |
 
+
 **Paper reproducibility:** pin *your paper env* (environment.yml / requirements freeze / commit hash) at publication time. The library’s promise is compatibility with **mainstream current** tools, not eternal bitwise stability of every transitive dep forever.
+
+### G2.2 Distribution target
+
+Secondary development ships via the **personal fork / local install** (`pip install -e .` or `git+https://github.com/duguex/VaspBandUnfolding@…`).  
+**Do not** open pull requests against upstream `QijingZheng/VaspBandUnfolding` unless the user explicitly requests it.
 
 
 ---

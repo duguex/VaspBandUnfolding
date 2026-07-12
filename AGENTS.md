@@ -22,6 +22,15 @@ Author: Qijing Zheng (zqj.kaka@gmail.com) · [GitHub](https://github.com/QijingZ
 - Expert academic roadmap (all feature IDs, seminars, validation levels): [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md)
 - Assumptions & interpretation limits: [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md)
 
+## Collaboration & Git policy (mandatory)
+
+- **Never open PRs against upstream** `QijingZheng/VaspBandUnfolding` (no `gh pr create` to the original project).
+- Development is **local + personal fork only**: https://github.com/duguex/VaspBandUnfolding
+- Remotes (typical):
+  - `origin` → upstream (fetch/reference only; do not push unless user explicitly asks)
+  - `fork` → `duguex/VaspBandUnfolding` (default push target for feature branches)
+- Do not propose or create pull requests “back to author” unless the user **explicitly** reverses this policy in chat.
+
 ---
 
 ## Architecture & Data Flow
