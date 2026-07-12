@@ -5,7 +5,7 @@
 | W1 | `examples/wfc_r/` | `bash run.sh` | ok | todo | not scaffolded; Extend existing: WAVECAR I/O, gamma-only, ncl |
 | W2 | `examples/wfc_r/` | `bash run.sh` | ok | todo | not scaffolded; Extend existing: G-vector set / cutoff sphere |
 | W3 | `examples/wfc_r/` | `bash run.sh` | ok | todo | not scaffolded; Extend existing: real-space PS wavefunction |
-| W4 | `examples/tdm/` | `bash run.sh` | skip | todo | not scaffolded; New: transition dipole matrix elements |
+| W4 | `examples/tdm/` | `bash run.sh` | ok | todo | New: transition dipole matrix elements (PS) |
 | W5 | `examples/ipr/` | `bash run.sh` | skip | todo | not scaffolded; New: inverse participation ratio |
 | W6 | `examples/elf_test/` | `bash run.sh` | ok | todo | ELF from WAVECAR; ELFCAR metric in ref |
 | B1 | `examples/unfold/sup_3x3x1/` | `bash run.sh` | ok | todo | spectral_weight.npy shape/sum metric in ref |
