@@ -2,6 +2,24 @@
 
 This example uses a monolayer MoSe2 BSE calculation and demonstrates the reciprocal-space `bseplot bz` workflow. The directory was previously named `examples/bse`; all README references should now use `examples/bseplot`.
 
+## Feature IDs
+
+| ID | Description |
+|----|-------------|
+| X5 | BSEFATBAND / exciton BZ: plot exciton density in the first Brillouin zone |
+| X6 | Exciton real-space density: reconstruct fixed-hole / fixed-electron density (requires WAVECAR) |
+
+## Level
+
+**L2 — experimental.** The BZ plotting mode (`bseplot bz`) works with
+pre-computed BSEFATBAND files. Real-space reconstruction (X6) requires the
+full WAVECAR and is not bundled.
+
+## Citation
+
+The BSE exciton visualisation implements the method described in the associated
+paper. See the main project [README](/README.md) for citation guidance.
+
 Included files:
 - `BSEFATBAND`: exciton amplitudes used by `bseplot bz`
 - `INCAR`: representative BSE input for the main exciton calculation
@@ -14,6 +32,12 @@ Included files:
 - `X1-hole-bsepy.png`, `X1-hole-vasp.png`: fixed-electron hole-density comparison
 
 Generate the BZ plot:
+
+```bash
+bash run.sh
+```
+
+or manually:
 
 ```bash
 bseplot bz --input BSEFATBAND --poscar POSCAR --exciton 1 --output-dir .
