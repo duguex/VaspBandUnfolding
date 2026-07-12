@@ -45,4 +45,5 @@ script-files = [
   "bin/nebplot",
   "bin/bseplot",
   "bin/spinormaker",
+  "bin/bsematrix",
 ]

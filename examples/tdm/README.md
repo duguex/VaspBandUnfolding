@@ -4,7 +4,7 @@
 |---|---|
 | Feature IDs | W4 (P5 optional, see below) |
 | Level | L0–L1 |
-| Citation | experimental only until C2 L2 |
+| Citation | **experimental** (L0–L1) — do not cite as L2; see [`docs/repro/W4_dipole.md`](../../docs/repro/W4_dipole.md) for benchmark requirements |
 | Runner | `bash run.sh` |
 
 ## Purpose

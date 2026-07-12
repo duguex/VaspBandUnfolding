@@ -11,12 +11,14 @@ Computes the electron localization function (ELF) from a VASP WAVECAR.
 ## Level
 
 **L0 — experimental.** The ELF computation runs but has not been validated
-against reference VASP ELFCAR output for general cases.
+against reference VASP ELFCAR output for general cases. **Do not cite as
+validated (L2)** without a separate cross-check.
 
 ## Citation
 
 The ELF implementation follows standard definitions (Becke & Edgecombe 1990).
 No separate publication exists for this demo — cite the base reference.
+This example is in **quarantine** for L2 claims (see `FEATURES.md` W6).
 
 ## Runner
 

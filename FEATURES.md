@@ -39,7 +39,7 @@ Only **L2+** should be presented as “agrees with VASP” in seminars. Details:
 
 `S1`…`S8` — see roadmap §4. `—` = appendix / with parent feature.
 
-CLI install note: **`bsematrix`** is in `bin/` but **not** in `pyproject.toml` `script-files` — use `python bsematrix.py` or `python bin/bsematrix`.
+CLI install note: **`bsematrix`** is now registered in `pyproject.toml` `script-files` (`pip install` provides `bsematrix`). If you use `python bsematrix.py` or `python bin/bsematrix` directly, no registration change is needed.
 
 ---
 
@@ -50,9 +50,9 @@ CLI install note: **`bsematrix`** is in `bin/` but **not** in `pyproject.toml` `
 | W1 | WAVECAR I/O (std / γ-only / ncl) | `vaspwfc.vaspwfc` | — | `examples/wfc_r/` | **ready** | **L2** | S1 | `lgamma`, `lsorbit`, `gamma_half`; see ASSUMPTIONS §2 |
 | W2 | G-vector set / cutoff sphere | `vaspwfc` G helpers | — | via W1/OUTCAR | **ready** | **L1–L2** | S1 | Compare G-count to OUTCAR |
 | W3 | Real-space PS wavefunction | `wfc_r` / `get_ps_wfc`, `save2vesta` | `wfcplot` | `examples/wfc_r/` | **ready** | **L2** | S1 | VESTA `.vasp`; phase non-unique for Re/Im |
-| W4 | Transition dipole (PS) | `get_dipole_mat` | `tdmplot` | README snippet only | **no-example** | **L0–L1** | S3 | p–r; periodic caveat PRB 87, 125301 |
+| W4 | Transition dipole (PS) | `get_dipole_mat` | `tdmplot` | README snippet only | **no-example** | **L0–L1** | S3 | p–r; periodic caveat PRB 87, 125301. **Experimental** — do not cite as L2 until VASP OPTICS benchmark exists (see `docs/repro/W4_dipole.md`) |
 | W5 | Inverse participation ratio | IPR helpers | — | README only | **no-example** | **L0–L1** | S3 | Grid-dependent |
-| W6 | Electron localization function | `elf` | — | `examples/elf_test/` | **unverified** | **L0** | S3 | README: needs testing |
+| W6 | Electron localization function | `elf` | — | `examples/elf_test/` | **unverified** | **L0** | S3 | **Experimental** — do not cite as L2; needs validation vs VASP ELFCAR (`docs/repro/` pending) |
 | B1 | Band unfolding (EBS) | `unfold`, `spectral_weight`, `EBS_*` | — | `examples/unfold/*` | **needs-data** | **L1–L2** | S2 | PS weights; npy/PNG cached |
 | B2 | Unfold + atomic weights | `unfold` + PROCAR path | — | `examples/unfold/Ce@BL-MoS2_3x3x1/` | **needs-data** | **L1** | S2 | `plt_unf.py` |
 | B3 | Band reordering by overlap | `band_order.reorder_band` | — | `examples/band_reorder/` | **needs-data** | **L1** | S2 | PNG present; need script+WAVECAR |
@@ -62,13 +62,13 @@ CLI install note: **`bsematrix`** is in `bin/` but **not** in `pyproject.toml` `
 | P2 | Nonlocal projectors | `nonlq`, `nonlr` | — | `examples/projectors/` | **ready** | **L2** | S4 | vs NormalCar; LREAL T/F |
 | P3 | PAW \(Q_{ij}\), \(\nabla_{ij}\) | `get_Qij`, `get_nablaij`, … | — | via paw | **ready** | **L1–L2** | S4 | Partial-wave completeness |
 | P4 | AE wavefunction | `aewfc.vasp_ae_wfc` | — | `examples/aewfc/co2/` | **optional-dep** | **L1–L2** | S4 | **pySBT** |
-| P5 | AE transition dipole | `aewfc.get_dipole_mat` | `tdmplot` | README snippet only | **optional-dep** | **L0–L1** | S3/S4 | One-center nabla correction |
+| P5 | AE transition dipole | `aewfc.get_dipole_mat` | `tdmplot` | README snippet only | **optional-dep** | **L0–L1** | S3/S4 | One-center nabla correction. **Experimental** — same L2 caveat as W4; do not cite without VASP OPTICS benchmark |
 | O1 | SOC matrix (PAW AE basis) | `spinorb` | — | `examples/spinor/` (data) | **needs-data** | **L1** | S5 | SocCar / NormalCar / … |
 | O2 | SOC spinor WAVECAR | `spinor.socclass` | `spinormaker` | `examples/spinor/` | **needs-data** | **L1** | S5 | ≠ automatic SCF ncl |
 | O3 | SOC eigen / MAE helpers | `spinorb_eigen`, `get_mae`, … | — | — | **no-example** | **L0–L1** | S5 | Occupation policy matters |
 | X1 | BSE interaction matrix | `bsematrix` | `bin/bsematrix` | `examples/bsematrix/BP/` | **partial** | **L2** (`pw_only`) | S6 | Other modes lower |
-| X2 | BSE modes pw / paw_orth / paw_full | `bsematrix` `--mode` | same | BP tables | **partial** | **L1–L2** | S6 | Quarantine weak modes for citation |
-| X3 | Finite-q BSE | `--q-ext` | same | BP qext artifacts | **partial** | **L0–L1** | S6 | Not validated |
+| X2 | BSE modes pw / paw_orth / paw_full | `bsematrix` `--mode` | same | BP tables | **partial** | **L1–L2** | S6 | **pw_only L2**; `paw_orth` / `paw_full` residual — do not cite without validation (quarantine) |
+| X3 | Finite-q BSE | `--q-ext` | same | BP qext artifacts | **partial** | **L0–L1** | S6 | **Quarantine** — not validated; do not cite as L2 |
 | X4 | Screened potential (WFULL) | `wfull` | — | — | **no-example** | **L1** | S6 | BSE response-basis infra |
 | X5 | BSEFATBAND / exciton BZ | `bsefatband` | `bseplot bz` | `examples/bseplot/` | **ready** | **L2** | S7 | Bundled BSEFATBAND |
 | X6 | Exciton real-space density | `bsefatband` | `bseplot realspace` | `examples/bseplot/` PNG | **needs-data** | **L1–L2** | S7 | Needs WAVECAR+OUTCAR phases |
@@ -92,7 +92,7 @@ CLI install note: **`bsematrix`** is in `bin/` but **not** in `pyproject.toml` `
 | C4 | `nebplot` | `bin/nebplot` | yes | D2 | NEB path from OUTCARs |
 | C5 | `bseplot` | `bin/bseplot` | yes | X5, X6 | Exciton BZ or real-space density |
 | C6 | `spinormaker` | `bin/spinormaker` | yes | O2 | SOC spinor WAVECAR |
-| C7 | `bsematrix` | `bin/bsematrix` | **no** | X1–X3 | Build/diagonalize BSE matrix |
+| C7 | `bsematrix` | `bin/bsematrix` | **yes** | X1–X3 | Build/diagonalize BSE matrix |
 
 Common flags (1-based VASP indices): `-w` WAVECAR, `-p` POSCAR/POTCAR, `-s` spin, `-k` k-point, `-n` band.
 
@@ -124,7 +124,7 @@ Common flags (1-based VASP indices): `-w` WAVECAR, `-p` POSCAR/POTCAR, `-s` spin
 |---|---|---|
 | `numpy`, `scipy`, `matplotlib`, `ase` | core | yes |
 | `pySBT` | P4, P5 | optional (`requirements-optional.txt`) |
-| `spglib` | B5 | **no** — install manually |
+| `spglib` | B5 | yes (`requirements-optional.txt`) |
 
 ---
 
