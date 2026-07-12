@@ -2,31 +2,57 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# Prefer a multi-k WAVECAR; fall back to sibling demo data.
 if [[ ! -f WAVECAR ]]; then
-    echo "MISSING: WAVECAR - band reordering requires a converged WAVECAR" >&2
-    echo "Place a WAVECAR (from a VASP run with LORBIT>=11 and LWAVE=.TRUE.)" >&2
-    echo "in this directory and re-run." >&2
+  if [[ -f ../wfc_r/WAVECAR ]]; then
+    ln -sfn ../wfc_r/WAVECAR WAVECAR
+  else
+    echo "MISSING: WAVECAR (need multi-k band-structure WAVECAR)" >&2
     exit 2
+  fi
+fi
+
+if [[ ! -f KPOINTS ]]; then
+  if [[ -f ../wfc_r/KPOINTS ]]; then
+    ln -sfn ../wfc_r/KPOINTS KPOINTS
+  fi
 fi
 
 export PYTHONPATH="$(cd ../.. && pwd):${PYTHONPATH:-}"
-
 mkdir -p ref
 
-# TODO: implement band reordering by overlap once the API is stable.
-# For now, validate that WAVECAR loads and I/O works.
 python - <<'PY'
-from vaspwfc import vaspwfc
+from __future__ import annotations
+
 from pathlib import Path
 
+import numpy as np
+
+from band_order import reorder_band
+from vaspwfc import vaspwfc
+
 wfc = vaspwfc("WAVECAR")
-nbands = wfc._nbands
-nkpts = wfc._nkpts
-Path("ref").mkdir(exist_ok=True)
-Path("ref/wavecar_info.txt").write_text(
-    f"nbands={nbands} nkpts={nkpts} nelect={wfc._nelect:.2f}\n"
+nk = int(wfc._nkpts)
+# Line-mode segments: use all k-points as one segment when KPOINTS is not line-mode.
+nkseg = nk if nk > 0 else 1
+max_nb = min(8, int(wfc._nbands))
+ebands, bands_new, kpath, kbound = reorder_band(
+    wavecar="WAVECAR",
+    max_nbnds=max_nb,
+    olap_cut=0.5,
+    save_olap=False,
+    save_idx=True,
+    nkseg=nkseg,
 )
-print(f"WAVECAR: {nbands} bands, {nkpts} k-points, {wfc._nelect:.2f} electrons")
+ref = Path("ref")
+ref.mkdir(exist_ok=True)
+np.save(ref / "bands_new.npy", bands_new)
+(ref / "reorder_summary.txt").write_text(
+    f"nkpts={nk}\nmax_nbnds={max_nb}\nkpath_end={float(kpath[-1]):.8f}\n"
+    f"kbound={np.array2string(np.asarray(kbound), precision=6)}\n"
+    f"bands_new_shape={tuple(np.asarray(bands_new).shape)}\n"
+)
+print("wrote", ref / "reorder_summary.txt")
 PY
 
-echo "band_reorder PASS (WAVECAR I/O only; reorder TBD)"
+echo "band_reorder PASS"

@@ -267,8 +267,9 @@ class vaspwfc(object):
             kj = (ii + 1) * nkseg
             self._kpath[ki:kj] += self._kpath[ki - 1]
 
-            self._kbound = np.concatenate(
-                (self._kpath[0::nkseg], [self._kpath[-1], ]))
+        # Always define bounds (nsec==1 used to leave _kbound unset)
+        self._kbound = np.concatenate(
+            (self._kpath[0::nkseg], [self._kpath[-1], ]))
 
         return self._kpath, self._kbound
 

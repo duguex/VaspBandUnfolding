@@ -1,0 +1,6 @@
+gamma=False
+shape=(4, 4)
+max_abs=0.00000000e+00
+energies=[-14.687103 -14.17981  -13.959489 -13.221174]
+waveA=../wfc_r/WAVECAR
+waveB=../wfc_r/WAVECAR
