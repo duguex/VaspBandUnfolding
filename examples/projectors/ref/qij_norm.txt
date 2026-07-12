@@ -1,0 +1,3 @@
+# element  Qij_shape  Frobenius_norm
+Mo        (18, 18)      1.20824276e+00
+S         (8, 8)        7.81276736e-01

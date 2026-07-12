@@ -13,3 +13,4 @@ fi
 mkdir -p ref
 
 python run_check.py
+python run_qij.py

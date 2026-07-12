@@ -27,5 +27,16 @@ Joubert (1999).
 ## Runner
 
 ```bash
-bash run.sh        # requires lreal_false/cproj.npy; writes ref/cproj_max.txt
+bash run.sh        # requires lreal_false/cproj.npy; writes ref/cproj_max.txt and ref/qij_norm.txt
 ```
+
+### Output files
+
+| File | Source | Description |
+|------|--------|-------------|
+| `ref/cproj_max.txt` | `run_check.py` | Max deviation between computed and VASP cproj (P2) |
+| `ref/qij_norm.txt` | `run_qij.py` | Frobenius norm of PAW Qij matrix per element (P3) |
+
+The **P3** target (`run_qij.py`) reads PAW partial-wave data from the POTCAR to
+compute the on-site overlap-correction matrices \(Q_{ij}\) and reports their
+Frobenius norms. No WAVECAR is required for this step.

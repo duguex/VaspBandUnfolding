@@ -27,6 +27,6 @@
 | X4 | `examples/wfull/` | `bash run.sh` | ok | todo | not scaffolded; New: screened potential (WFULL) |
 | X5 | `examples/bseplot/` | `bash run.sh` | ok | todo | not scaffolded; Extend existing: BSEFATBAND / exciton BZ |
 | X6 | `examples/bseplot/` | `bash run.sh` | ok | todo | not scaffolded; Extend existing: exciton real-space density |
-| D1 | `examples/nac/` | `bash run.sh` | skip | todo | not scaffolded; New: non-adiabatic couplings |
-| D2 | `examples/neb/` | `bash run.sh` | skip | todo | not scaffolded; New: NEB path plot |
+| D1 | `examples/nac/` | `bash run.sh` | skip | todo | not scaffolded; New: non-adiabatic couplings; import-check only, needs two WAVECARs from MD |
+| D2 | `examples/neb/` | `bash run.sh` | ok | todo | not scaffolded; New: NEB path PES with synthetic OUTCAR stubs |
 | D3 | `examples/ewald/` | `bash run.sh` | ok | todo | not scaffolded; Extend existing: Ewald / Madelung |

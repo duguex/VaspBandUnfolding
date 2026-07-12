@@ -1,0 +1,97 @@
+ running   40 mpi-ranks, on    1 nodes
+ distrk:  each k-point on   40 cores,    1 groups
+ distr:  one band on    5 cores,    8 groups
+ vasp.6.5.1 10Mar25 (build Dec 01 2025 20:34:15) gamma-only                     
+  
+ POSCAR found type information on POSCAR MoSe
+ POSCAR found :  2 types and      36 ions
+ -----------------------------------------------------------------------------
+|                                                                             |
+|           W    W    AA    RRRRR   N    N  II  N    N   GGGG   !!!           |
+|           W    W   A  A   R    R  NN   N  II  NN   N  G    G  !!!           |
+|           W    W  A    A  R    R  N N  N  II  N N  N  G       !!!           |
+|           W WW W  AAAAAA  RRRRR   N  N N  II  N  N N  G  GGG   !            |
+|           WW  WW  A    A  R   R   N   NN  II  N   NN  G    G                |
+|           W    W  A    A  R    R  N    N  II  N    N   GGGG   !!!           |
+|                                                                             |
+|     You requested a magnetic or noncollinear calculation, but did not       |
+|     specify the initial magnetic moment with the MAGMOM tag. Note that      |
+|     a default of 1 will be used for all atoms. This ferromagnetic setup     |
+|     may break the symmetry of the crystal, in particular it may rule        |
+|     out finding an antiferromagnetic solution. Thence, we recommend         |
+|     setting the initial magnetic moment manually or verifying carefully     |
+|     that this magnetic setup is desired.                                    |
+|                                                                             |
+ -----------------------------------------------------------------------------
+
+ scaLAPACK will be used
+ -----------------------------------------------------------------------------
+|                                                                             |
+|           W    W    AA    RRRRR   N    N  II  N    N   GGGG   !!!           |
+|           W    W   A  A   R    R  NN   N  II  NN   N  G    G  !!!           |
+|           W    W  A    A  R    R  N N  N  II  N N  N  G       !!!           |
+|           W WW W  AAAAAA  RRRRR   N  N N  II  N  N N  G  GGG   !            |
+|           WW  WW  A    A  R   R   N   NN  II  N   NN  G    G                |
+|           W    W  A    A  R    R  N    N  II  N    N   GGGG   !!!           |
+|                                                                             |
+|     The value NCORE = 4 specified in the INCAR file was overwritten,        |
+|     because it was not compatible with the 40 processes available:          |
+|     NCORE = 5                                                               |
+|     was used instead, please check that this makes sense for your           |
+|     machine.                                                                |
+|                                                                             |
+ -----------------------------------------------------------------------------
+
+ -----------------------------------------------------------------------------
+|                                                                             |
+|               ----> ADVICE to this user running VASP <----                  |
+|                                                                             |
+|     You have a (more or less) 'large supercell' and for larger cells it     |
+|     might be more efficient to use real-space projection operators.         |
+|     Therefore, try LREAL= Auto in the INCAR file.                           |
+|     Mind: For very accurate calculation, you might also keep the            |
+|     reciprocal projection scheme (i.e. LREAL=.FALSE.).                      |
+|                                                                             |
+ -----------------------------------------------------------------------------
+
+ LDA part: xc-table for (Slater+PW92), standard interpolation
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ FFT: planning ... GRIDC
+ FFT: planning ... GRID_SOFT
+ FFT: planning ... GRID
+ WAVECAR not read
+ entering main loop
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1     0.140431082704E+04    0.14043E+04   -0.57421E+04   608   0.612E+02
+DAV:   2    -0.829185079558E+02   -0.14872E+04   -0.14466E+04  1088   0.179E+02
+DAV:   3    -0.240519617631E+03   -0.15760E+03   -0.15550E+03   704   0.662E+01
+DAV:   4    -0.245060559852E+03   -0.45409E+01   -0.45011E+01   832   0.122E+01
+DAV:   5    -0.245184394188E+03   -0.12383E+00   -0.12361E+00   800   0.189E+00    0.695E+01
+DAV:   6    -0.217605732921E+03    0.27579E+02   -0.99309E+01   688   0.188E+01    0.245E+01
+DAV:   7    -0.219221559841E+03   -0.16158E+01   -0.48916E+01   872   0.145E+01    0.223E+01
+DAV:   8    -0.219981890525E+03   -0.76033E+00   -0.72829E+00   808   0.604E+00    0.636E+00
+DAV:   9    -0.230034925834E+03   -0.10053E+02   -0.60467E+00   712   0.403E+00    0.428E+00
+DAV:  10    -0.235001144366E+03   -0.49662E+01   -0.27336E+00   744   0.236E+00    0.244E+00
+DAV:  11    -0.237908898821E+03   -0.29078E+01   -0.18890E+00   768   0.193E+00    0.149E+00
+DAV:  12    -0.238772378393E+03   -0.86348E+00   -0.67686E-01   744   0.118E+00    0.703E-01
+DAV:  13    -0.238956662772E+03   -0.18428E+00   -0.14537E-01   768   0.523E-01    0.407E-01
+DAV:  14    -0.239004130767E+03   -0.47468E-01   -0.32316E-02   800   0.288E-01    0.270E-01
+DAV:  15    -0.239038603065E+03   -0.34472E-01   -0.17863E-02   800   0.203E-01    0.143E-01
+DAV:  16    -0.239053124984E+03   -0.14522E-01   -0.32622E-03   768   0.918E-02    0.970E-02
+DAV:  17    -0.239064726222E+03   -0.11601E-01   -0.18090E-03   736   0.618E-02    0.578E-02
+DAV:  18    -0.239074274030E+03   -0.95478E-02   -0.17738E-03   712   0.558E-02    0.291E-02
+DAV:  19    -0.239077053249E+03   -0.27792E-02   -0.41408E-04   800   0.252E-02    0.210E-02
+DAV:  20    -0.239078120609E+03   -0.10674E-02   -0.12730E-04   736   0.142E-02    0.157E-02
+DAV:  21    -0.239078577511E+03   -0.45690E-03   -0.71013E-05   768   0.109E-02    0.904E-03
+DAV:  22    -0.239078684883E+03   -0.10737E-03   -0.14225E-05   768   0.504E-03    0.393E-03
+DAV:  23    -0.239078702322E+03   -0.17439E-04   -0.38630E-06   640   0.273E-03    0.312E-03
+DAV:  24    -0.239078715594E+03   -0.13272E-04   -0.46561E-06   736   0.258E-03    0.182E-03
+DAV:  25    -0.239078728805E+03   -0.13211E-04   -0.22051E-06   616   0.157E-03    0.119E-03
+DAV:  26    -0.239078753788E+03   -0.24983E-04   -0.15510E-06   640   0.134E-03    0.117E-03
+DAV:  27    -0.239078771940E+03   -0.18152E-04   -0.13604E-06   584   0.127E-03    0.841E-04
+DAV:  28    -0.239078776583E+03   -0.46431E-05   -0.31854E-07   544   0.710E-04    0.600E-04
+DAV:  29    -0.239078780428E+03   -0.38453E-05   -0.13322E-07   544   0.463E-04    0.328E-04
+DAV:  30    -0.239078784853E+03   -0.44251E-05   -0.18135E-07   544   0.429E-04    0.150E-04
+DAV:  31    -0.239078785630E+03   -0.77645E-06   -0.32744E-08   480   0.187E-04
+   1 F= -.23907879E+03 E0= -.23907879E+03  d E =-.226619E-11  mag=     0.0001
+ writing wavefunctions

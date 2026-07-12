@@ -18,6 +18,11 @@
 
 - `unfold.py` can be used to perform band unfolding from supercell calculations.
 
+- Full feature checklist (module / CLI / example / status): see [FEATURES.md](FEATURES.md).
+- Development goals (scientific proof + reusable components): [docs/GOALS.md](docs/GOALS.md).
+- Expert seminar / full-coverage methods plan: [docs/ACADEMIC_ROADMAP.md](docs/ACADEMIC_ROADMAP.md).
+- Assumptions & limits registry: [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md).
+
 ### Publications
 
 A list of publications utilizing `VaspBandUnfolding` can be found [here](doc/VaspBandUnfolding.pdf)!
