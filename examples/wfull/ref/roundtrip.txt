@@ -1,0 +1,5 @@
+# Fortran record round-trip test
+Original payload: [1.0, -2.5, 3.1415926535, 0.0]
+Read back:        [1.0, -2.5, 3.1415926535, 0.0]
+Match:            True
+nbytes:           32
