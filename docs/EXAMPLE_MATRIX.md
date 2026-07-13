@@ -18,9 +18,9 @@
 | P3 | `examples/projectors/` | `bash run.sh` | ok | l2-partial | Extend existing: PAW Qij, nablaij |
 | P4 | `examples/aewfc/co2/` | `bash run.sh` | ok | l2-partial | AE demo; requires pySBT; ref/ae_norm.txt |
 | P5 | `examples/tdm/` | `bash run.sh` | skip | experimental | New: AE transition dipole |
-| O1 | `examples/spinor/` | `bash run.sh` | skip | repro-pending | SocCar/NormalCar check; missing Soc* files (see docs/repro/O1.md) |
-| O2 | `examples/spinor/` | `bash run.sh` | skip | repro-pending | shares O1 runner; Soc* files required (see docs/repro/O1.md) |
-| O3 | `examples/spinor/` | `bash run.sh` | skip | experimental | shares O1 runner; missing Soc* files for MAE helpers (see docs/repro/O1.md) |
+| O1 | `examples/spinor/` | `bash run.sh` | ok | l2-partial | dumps in ispin2/soc_dump_work via patched vasp_std; spinormaker WAVECAR_spinor |
+| O2 | `examples/spinor/` | `bash run.sh` | ok | l2-partial | spinormaker built WAVECAR_spinor; readable via vaspwfc(lsorbit=True) |
+| O3 | `examples/spinor/` | `bash run.sh` | ok | experimental | dumps present; MAE helpers not separately gated |
 | X1 | `examples/bsematrix/BP/` | `bash run.sh` | ok | l2-partial | counts lines in py_pw_only_both_AMAT.txt to ref |
 | X2 | `examples/bsematrix/BP/` | `bash run.sh` | ok | l2-partial | shares X1 runner; AMAT text artifacts present |
 | X3 | `examples/bsematrix/BP/` | `bash run.sh` | ok | experimental | shares X1 runner; finite-q AMATs in directory; quarantine |

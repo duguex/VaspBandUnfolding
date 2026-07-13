@@ -1,0 +1,3 @@
+workdir=/home/duguex/VaspBandUnfolding/examples/spinor/ispin2/soc_dump_work
+nspin=1 nk=1 nb=304 nplw=26314
+component_norms=[1.1436541189187917, 0.0015235617328832058]

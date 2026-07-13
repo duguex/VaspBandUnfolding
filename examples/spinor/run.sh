@@ -1,39 +1,47 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
-
 export PYTHONPATH="$(cd ../.. && pwd):${PYTHONPATH:-}"
-
-# Check for any SocCar/NormalCar/SocRadCar files in the directory tree
-found=false
-for f in SocCar NormalCar SocRadCar; do
-    if find . -name "$f" -print -quit | grep -q .; then
-        found=true
-        break
-    fi
-done
-
-if ! $found; then
-    cat >&2 <<'EOF'
-MISSING: SocCar, NormalCar, or SocRadCar file not found in this directory tree.
-
-The spinor example requires output from a VASP non-collinear+SOC calculation:
-  - SocCar      (spin-orbit coupling matrix in PAW AE basis)
-  - NormalCar   (non-collinear spinor coefficients)
-  - SocRadCar   (radial SOC integrals)
-
-A plain WAVECAR from a non-collinear SCF run is NOT sufficient --
-the SocCar/NormalCar/SocRadCar files are generated only when VASP is
-configured with the spinor patch.
-
-See the README for setup instructions.
-EOF
-    exit 2
-fi
-
 mkdir -p ref
 
-# TODO: spinormaker invocation when all required files are present
-echo "spinor: SocCar etc. present — full validation TBD (needs spinormaker)" | tee ref/smoke.txt
+WORKDIR=""
+for d in ispin2/soc_dump_work spinless/soc_dump_work; do
+  if [[ -f "$d/WAVECAR" && -f "$d/NormalCAR" && -f "$d/SocCar" && -f "$d/SocRadCar" ]]; then
+    WORKDIR="$d"
+    break
+  fi
+done
 
-echo "spinor PASS (data present, full run TBD)"
+if [[ -z "$WORKDIR" ]]; then
+  echo "MISSING: WAVECAR+NormalCAR+SocCar+SocRadCar under spinless|ispin2/soc_dump_work" >&2
+  echo "See docs/repro/O2_local_vasp_patch_build.md" >&2
+  exit 2
+fi
+
+echo "Using $WORKDIR"
+(
+  cd "$WORKDIR"
+  if [[ ! -f WAVECAR_spinor ]]; then
+    python "$PYTHONPATH/bin/spinormaker" --mixwave-ibs 105 107 109 111 113 --correct-kpts 1 --full-kpts
+  fi
+)
+
+python - <<PY
+from pathlib import Path
+import numpy as np
+from vaspwfc import vaspwfc
+wdir = Path("$WORKDIR")
+w = vaspwfc(str(wdir / "WAVECAR_spinor"), lsorbit=True)
+phi = w.wfc_r(ikpt=1, iband=1)
+comps = phi if isinstance(phi, (list, tuple)) else [phi]
+norms = [float(np.linalg.norm(p)) for p in comps]
+ref = Path("ref")
+ref.mkdir(exist_ok=True)
+(ref / "spinor_summary.txt").write_text(
+    f"workdir={wdir.resolve()}\n"
+    f"nspin={w._nspin} nk={w._nkpts} nb={w._nbands} nplw={w._nplws[0]}\n"
+    f"component_norms={norms}\n"
+)
+print("wrote", ref / "spinor_summary.txt")
+PY
+echo "spinor PASS"

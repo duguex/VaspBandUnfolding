@@ -47,3 +47,25 @@ rsgrad normalcar --wavecar WAVECAR --poscar POSCAR --potcar POTCAR -o NormalCAR
 ## License
 
 VASP sources are proprietary. Keep them **out of git** (see root `.gitignore`).
+
+## Verified on this host (2026-07-13)
+
+Built:
+
+- `third_party/vasp.5.4.4.pl2/bin/vasp_std`
+- `third_party/vasp.5.4.4.pl2/bin/vasp_ncl`
+
+MoSe2 collinear dumps (`examples/spinor/{spinless,ispin2}/soc_dump_work/`, gitignored):
+
+- `WAVECAR`, `NormalCAR`, `SocCar`, `SocRadCar` written by **patched `vasp_std`**
+- `spinormaker` produced `WAVECAR_spinor` (readable with `vaspwfc(..., lsorbit=True)`)
+- `examples/spinor/run.sh` → **PASS**; smoke **19/19**
+
+Regenerate:
+
+```bash
+VASP=third_party/vasp.5.4.4.pl2/bin/vasp_std
+# from examples/spinor/ispin2/soc_dump_work with POSCAR/POTCAR/KPOINTS/INCAR
+mpirun -np 8 $VASP
+spinormaker --mixwave-ibs 105 107 109 111 113 --correct-kpts 1 --full-kpts
+```

@@ -14,3 +14,7 @@ third_party/NAMDwithSOC/
 third_party/vasp*/
 *.o
 *.mod
+
+# large local VASP dump workdirs (regenerate with patched vasp)
+examples/spinor/**/soc_dump_work/
+third_party/soc_dump_test/
