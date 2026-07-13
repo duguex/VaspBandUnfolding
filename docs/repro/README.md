@@ -1,17 +1,27 @@
 # Reproduction Recipes
 
-This directory holds per-ID recipes for running VASP calculations that produce
-the heavy inputs (WAVECAR, SocCar, BSEFATBAND, etc.) needed by examples that
-cannot bundle them in the git tree.
+Heavy VASP inputs and local binaries are **not** stored in git. Recipes:
 
-## Recipes
+| ID | Doc | Status |
+|---|---|---|
+| **O2** | [`O2_spinor_patch.md`](O2_spinor_patch.md) | Public patch + `rsgrad` NormalCAR |
+| **O2 local** | [`O2_local_vasp_patch_build.md`](O2_local_vasp_patch_build.md) | This host: patched 5.4.4 build + MoSe2 dump verified |
+| **O2 regen** | `scripts/regen_spinor_mose2.sh` | One-shot dump + spinormaker; `REGEN_NCL_REF=1` optional |
+| **W4** | [`W4_dipole.md`](W4_dipole.md) + `examples/tdm/vasp_optics/` | Local LOPTICS workdir (gitignored); `run_l2.sh` |
+| **X6** | [`X6_exciton_rs.md`](X6_exciton_rs.md) | Needs matching BSE WAVECAR; `run_realspace.sh` |
+| **X1** | [`X1_bse_bp.md`](X1_bse_bp.md) | BP text refs; full rebuild is multi-step GW/BSE |
+| **B1** | [`B1_unfold.md`](B1_unfold.md) | Outline only |
 
-- [x] **O2**: [`O2_spinor_patch.md`](O2_spinor_patch.md) — how to get `NormalCAR` (`rsgrad`) and `SocCar`/`SocRadCar` (VASP 5.4.4 patches from NAMD with SOC); related repos
-- [ ] **B1**: `examples/unfold/sup_3x3x1` — full supercell SCF → spectral weights
-- [ ] **X6**: `examples/bseplot` — exciton realspace density from full WAVECAR
-- [ ] **X1**: `examples/bsematrix/BP` — BSE matrix rebuild from dielectric / WAVEDER tree
-- [ ] **W4**: `examples/tdm/vasp_optics` — LOPTICS job for dipole L2 (INCAR checked in; re-run if WAVECAR empty)
+## Gitignored local trees (regenerate, do not commit)
+
+```text
+third_party/vasp.5.4.4.pl2/          # sources + vasp_std / vasp_ncl
+examples/spinor/**/soc_dump_work/
+examples/spinor/**/ncl_ref_work/
+examples/tdm/vasp_optics/work/
+examples/nac/md_frames/
+```
 
 ## Policy
 
-Personal-fork development only; do not open PRs to upstream unless requested.
+Personal fork only; **no upstream PRs** unless requested.

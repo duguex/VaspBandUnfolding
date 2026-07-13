@@ -69,3 +69,17 @@ VASP=third_party/vasp.5.4.4.pl2/bin/vasp_std
 mpirun -np 8 $VASP
 spinormaker --mixwave-ibs 105 107 109 111 113 --correct-kpts 1 --full-kpts
 ```
+
+## Verified MoSe2 spinor path (this host)
+
+1. Collinear `vasp_std` dumps under `examples/spinor/{spinless,ispin2}/soc_dump_work/` (gitignored).
+2. `spinormaker` → `WAVECAR_spinor` (readable with `vaspwfc(..., lsorbit=True)`).
+3. Optional SCF ncl: set `REGEN_NCL_REF=1` when running `scripts/regen_spinor_mose2.sh`.
+4. Eigenvalue compare: `examples/spinor/ref/spinor_vs_ncl.txt` (MAE ~ few meV — second-variation ≠ SCF identity).
+
+One-shot:
+
+```bash
+bash scripts/regen_spinor_mose2.sh
+bash examples/spinor/run.sh
+```

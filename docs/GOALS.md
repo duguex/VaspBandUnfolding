@@ -3,7 +3,7 @@
 Audience: maintainers and research users of **VaspBandUnfolding** (PyVaspWfc).  
 Status: agreed direction for further development (expert / publication context).
 
-Related: [`FEATURES.md`](../FEATURES.md) · [`ASSUMPTIONS.md`](ASSUMPTIONS.md) · [`ACADEMIC_ROADMAP.md`](ACADEMIC_ROADMAP.md)
+Related: [`FEATURES.md`](../FEATURES.md) · [`STATUS.md`](STATUS.md) · [`CITATION_POLICY.md`](CITATION_POLICY.md) · [`ASSUMPTIONS.md`](ASSUMPTIONS.md) · [`ACADEMIC_ROADMAP.md`](ACADEMIC_ROADMAP.md) · [`AGENTS.md`](../AGENTS.md)
 
 ---
 
@@ -162,3 +162,10 @@ When promoting an ID to L2, update `FEATURES.md` and add or link evidence in the
 ## 8. One-line summary
 
 > **Prove each component’s scientific contract with evidence (G1), then ship it so other research code and papers can depend on it cheaply and honestly (G2).**
+
+---
+
+## Progress tracking
+
+Engineering/citation **snapshot** (smoke counts, open gaps): [`STATUS.md`](STATUS.md).  
+Do not treat this goals file as a live dashboard.

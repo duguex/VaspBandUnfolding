@@ -18,10 +18,11 @@
 Author: Qijing Zheng (zqj.kaka@gmail.com) · [GitHub](https://github.com/QijingZheng/VaspBandUnfolding)
 
 - Full feature checklist (module / CLI / example / status): [`FEATURES.md`](FEATURES.md)
+- Live engineering/citation snapshot: [`docs/STATUS.md`](docs/STATUS.md)
 - Secondary development goals (scientific proof + reusable components): [`docs/GOALS.md`](docs/GOALS.md)
 - Expert academic roadmap (all feature IDs, seminars, validation levels): [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md)
-- Citation policy: [`docs/CITATION_POLICY.md`](docs/CITATION_POLICY.md)
 - Assumptions & interpretation limits: [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md)
+- Citation policy (what you may claim): [`docs/CITATION_POLICY.md`](docs/CITATION_POLICY.md)
 
 ## Collaboration & Git policy (mandatory)
 
@@ -112,6 +113,8 @@ Indices (`ispin`, `ikpt`, `iband`) are **1-based**.
 | `bsematrix/BP/` | BSE matrix vs VASP (40+ text refs) |
 | `bseplot/` | Exciton BZ/real-space density |
 | `elf_test/`, `ewald/`, `potplot/`, `band_reorder/` | ELF, Madelung, POTCAR viz, band reorder |
+| `tdm/` | PS dipole gates vs local LOPTICS |
+| `nac/` | Dual-frame NAC (local WAVECARs) |
 
 ---
 
@@ -137,7 +140,13 @@ python bsefatband.py ...
 python spinor.py ...
 python band_order.py
 python vaspwfc.py                         # demo block at bottom
+
+# Smoke + unit tests (no CI)
+python scripts/smoke_examples.py
+PYTHONPATH=. python -m pytest tests/ -q
 ```
+
+Live snapshot: [`docs/STATUS.md`](docs/STATUS.md).
 
 **No tests, no CI, no formatter, no linter** — zero automated test infrastructure. Validation is manual against `examples/`.
 
@@ -277,7 +286,7 @@ Noncollinear WAVECAR doubles storage:
 | `potplot` | Visualize PAW projectors/partial waves from POTCAR |
 | `nebplot` | NEB minimum-energy path from OUTCARs |
 | `bseplot` | Exciton BZ density or real-space fixed e/h reconstruction |
-| `bsematrix` | Build/diagonalize BSE matrix (not in install scripts list) |
+| `bsematrix` | Build/diagonalize BSE matrix (`--mode` default **pw_only**) |
 | `spinormaker` | Build SOC spinor WAVECAR from scalar/ISPIN=2 |
 
 ---
@@ -303,24 +312,27 @@ Noncollinear WAVECAR doubles storage:
 | `matplotlib` | Required | Plotting (EBS, DOS, excitons, bands) |
 | `ase` | Required | POSCAR I/O, supercell, Atoms |
 | `pySBT` | Optional (`requirements-optional.txt`) | Spherical Bessel / AE PAW workflows |
-| `spglib` | **Not declared** — needed only for `hse_kpts.py` | Space-group IBZ k-points |
+| `spglib` | Optional (`requirements-optional.txt`; may be commented — install manually) | `hse_kpts.py` IBZ k-points |
 
 ---
 
 ## Testing & QA
 
-- **No test files** — no `tests/`, no `test_*.py`, no pytest/unittest
-- **No CI/CD** — no GitHub Actions, Makefile, or tox
-- **Validation strategy**: Manual comparison against VASP reference outputs in `examples/`
-  - Strongest suite: `examples/bsematrix/BP/` (AMAT norms, eigenvalue tables for `pw_only` / `paw_orth_only` / `paw_full`)
-  - Visual: `examples/bseplot/`, `examples/aewfc/co2/` side-by-side PNGs
-  - Cached baselines: `.npy` spectral weights / projectors loaded when present
+- **Smoke:** `python scripts/smoke_examples.py` — walks `docs/EXAMPLE_MATRIX.md` unique `examples/*/run.sh` (expect **19 pass** when dumps present for spinor/nac paths that need local WAVECARs).
+- **Unit/infra:** `PYTHONPATH=. python -m pytest tests/ -q` (constants, spline, sph_harm, ewald, BSE CLI defaults, …).
+- **No CI/CD** — no GitHub Actions, Makefile, or tox in-repo.
+- **Validation strategy**: Manual + scripted gates vs VASP / analytic refs under `examples/`
+  - Strongest text suite: `examples/bsematrix/BP/` (`pw_only` citable; `paw_*` / finite-q **quarantine**)
+  - Dipole: `examples/tdm/ref/l2_table.md` + `run_l2.sh` (needs local LOPTICS workdir)
+  - ELF: `examples/elf_test/compare_elf.py` vs ELFCAR
+  - Spinor: `examples/spinor/run.sh` + optional `ref/spinor_vs_ncl.txt`
+  - Live snapshot: [`docs/STATUS.md`](docs/STATUS.md) · citation: [`docs/CITATION_POLICY.md`](docs/CITATION_POLICY.md)
 
 ### What to verify before claiming changes work
 
 1. `python -c "import vaspwfc; print('ok')"` — basic import
-2. Run the relevant script under `examples/<feature>/`
-3. BSE changes: compare against `examples/bsematrix/BP/` text refs
+2. `python scripts/smoke_examples.py` and/or the touched `examples/<feature>/run.sh`
+3. BSE changes: BP tables + keep CLI default `pw_only`
 4. Numerical sanity: energies in eV, spectral weights ≤ 1, spinor norms, etc.
 
 ### When adding code
@@ -329,3 +341,4 @@ Noncollinear WAVECAR doubles storage:
 - Keep 1-based VASP indexing for spin/k/band CLI args
 - Validate against example reference data or a known VASP calculation
 - Do not introduce a second packaging/layout convention beside the flat `py-modules` root
+- Update `FEATURES.md` / `docs/EXAMPLE_MATRIX.md` / `docs/CITATION_POLICY.md` when eng. or citation level changes

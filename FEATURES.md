@@ -1,12 +1,10 @@
 # Feature Inventory
 
-Single checklist of **VaspBandUnfolding** (PyVaspWfc) capabilities: module, CLI, example, engineering status, and **academic traceability** (ID / validation level / seminar).
+Single checklist of **VaspBandUnfolding** (PyVaspWfc): module, CLI, example, engineering status, and academic level.
 
-Companion docs:
+**Live status:** [`docs/STATUS.md`](docs/STATUS.md) · **Citation:** [`docs/CITATION_POLICY.md`](docs/CITATION_POLICY.md) · **C1/C2 matrix:** [`docs/EXAMPLE_MATRIX.md`](docs/EXAMPLE_MATRIX.md)
 
-- Expert full-coverage plan: [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md)
-- Assumptions & limits: [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md)
-- Usage: [`README.md`](README.md) · Dev: [`AGENTS.md`](AGENTS.md)
+Companion: [`docs/GOALS.md`](docs/GOALS.md) · [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md) · [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md) · [`AGENTS.md`](AGENTS.md)
 
 ---
 
@@ -17,138 +15,99 @@ Companion docs:
 | Status | Meaning |
 |---|---|
 | **ready** | Importable; usable with bundled or typical VASP outputs |
-| **optional-dep** | Works after installing an optional package |
-| **needs-data** | Code works; repo lacks large inputs (`WAVECAR`, `SocCar`, …) for a full demo |
-| **partial** | Runnable, but accuracy vs VASP is incomplete or still under validation |
-| **unverified** | Implemented; author/docs mark as not fully tested |
-| **no-example** | Library/CLI exists; no dedicated `examples/` demo |
-| **infra** | Support library (always in scope for tests/docs, not a standalone science demo) |
+| **optional-dep** | Needs optional package (`pySBT`, `spglib`, …) |
+| **needs-data** | Code works; large/local dumps not in git (see `docs/repro/`) |
+| **partial** | Runnable; accuracy vs VASP incomplete for some modes |
+| **infra** | Support library (tests, not a science demo) |
 
-### Validation level (academic)
+### Validation / citation (align with CITATION_POLICY)
 
 | Level | Meaning |
 |---|---|
 | **L0** | Implementation exists |
 | **L1** | Internal / analytic consistency |
-| **L2** | Same-input vs VASP or standard reference |
-| **L3** | Multi-system + literature / independent code |
+| **L2-partial** | Partial gates vs VASP/ref; not full parity |
+| **L2** | Same-input vs VASP/ref suitable for careful citation |
+| **quarantine** | Known residual / incomplete — do not cite as validated |
 
-Only **L2+** should be presented as “agrees with VASP” in seminars. Details: [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md).
+Only **L2** (and carefully worded **L2-partial**) should appear as validation claims. Never cite **quarantine** as production accuracy.
 
 ### Seminar slots
 
-`S1`…`S8` — see roadmap §4. `—` = appendix / with parent feature.
+`S1`…`S8` — [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md).
 
-CLI install note: **`bsematrix`** is now registered in `pyproject.toml` `script-files` (`pip install` provides `bsematrix`). If you use `python bsematrix.py` or `python bin/bsematrix` directly, no registration change is needed.
+CLI: `bsematrix` is in `pyproject.toml` `script-files`. Default `--mode pw_only`.
 
 ---
 
-## Master table (all feature IDs)
+## Master table
 
-| ID | Feature | Module / API | CLI | Example | Eng. status | Level | Seminar | Notes |
+| ID | Feature | Module / API | CLI | Example | Eng. | Level | Seminar | Notes |
 |---|---|---|---|---|---|---|---|---|
-| W1 | WAVECAR I/O (std / γ-only / ncl) | `vaspwfc.vaspwfc` | — | `examples/wfc_r/` | **ready** | **L2** | S1 | `lgamma`, `lsorbit`, `gamma_half`; see ASSUMPTIONS §2 |
-| W2 | G-vector set / cutoff sphere | `vaspwfc` G helpers | — | via W1/OUTCAR | **ready** | **L1–L2** | S1 | Compare G-count to OUTCAR |
-| W3 | Real-space PS wavefunction | `wfc_r` / `get_ps_wfc`, `save2vesta` | `wfcplot` | `examples/wfc_r/` | **ready** | **L2** | S1 | VESTA `.vasp`; phase non-unique for Re/Im |
-| W4 | Transition dipole (PS) [l2-partial CO2] | `get_dipole_mat` | `tdmplot` | README snippet only | **no-example** | **L0–L1** | S3 | p–r; periodic caveat PRB 87, 125301. **Experimental** — do not cite as L2 until VASP OPTICS benchmark exists (see `docs/repro/W4_dipole.md`) |
-| W5 | Inverse participation ratio | IPR helpers | — | README only | **no-example** | **L0–L1** | S3 | Grid-dependent |
-| W6 | Electron localization function | `elf` | — | `examples/elf_test/` | **unverified** | **L0** | S3 | **Experimental** — do not cite as L2; needs validation vs VASP ELFCAR (`docs/repro/` pending) |
-| B1 | Band unfolding (EBS) | `unfold`, `spectral_weight`, `EBS_*` | — | `examples/unfold/*` | **needs-data** | **L1–L2** | S2 | PS weights; npy/PNG cached |
-| B2 | Unfold + atomic weights | `unfold` + PROCAR path | — | `examples/unfold/Ce@BL-MoS2_3x3x1/` | **needs-data** | **L1** | S2 | `plt_unf.py` |
-| B3 | Band reordering by overlap | `band_order.reorder_band` | — | `examples/band_reorder/` | **needs-data** | **L1** | S2 | PNG present; need script+WAVECAR |
-| B4 | PROCAR orbital projections | `procar.procar` | — | — | **no-example** | **L0–L1** | S2 | Parse only; no regen of projectors |
-| B5 | Irreducible k-points (IBZ) | `hse_kpts.get_ir_kpts` | — | — | **optional-dep** | **L0–L1** | S8 | **spglib** not in requirements |
-| P1 | POTCAR / partial waves | `paw.pawpotcar` | `potplot` | `examples/potplot/`, `projectors/` | **ready** | **L2** | S4 | potplot image-only regen gap |
-| P2 | Nonlocal projectors | `nonlq`, `nonlr` | — | `examples/projectors/` | **ready** | **L2** | S4 | vs NormalCar; LREAL T/F |
-| P3 | PAW \(Q_{ij}\), \(\nabla_{ij}\) | `get_Qij`, `get_nablaij`, … | — | via paw | **ready** | **L1–L2** | S4 | Partial-wave completeness |
-| P4 | AE wavefunction | `aewfc.vasp_ae_wfc` | — | `examples/aewfc/co2/` | **optional-dep** | **L1–L2** | S4 | **pySBT** |
-| P5 | AE transition dipole | `aewfc.get_dipole_mat` | `tdmplot` | README snippet only | **optional-dep** | **L0–L1** | S3/S4 | One-center nabla correction. **Experimental** — same L2 caveat as W4; do not cite without VASP OPTICS benchmark |
-| O1 | SOC matrix (PAW AE basis) | `spinorb` | — | `examples/spinor/` (data) | **needs-data** | **L1** | S5 | SocCar / NormalCar / … |
-| O2 | SOC spinor WAVECAR | `spinor.socclass` | `spinormaker` | `examples/spinor/` | **needs-data** | **L1** | S5 | ≠ automatic SCF ncl |
-| O3 | SOC eigen / MAE helpers | `spinorb_eigen`, `get_mae`, … | — | — | **no-example** | **L0–L1** | S5 | Occupation policy matters |
-| X1 | BSE interaction matrix | `bsematrix` | `bin/bsematrix` | `examples/bsematrix/BP/` | **partial** | **L2** (`pw_only`) | S6 | Other modes lower |
-| X2 | BSE modes pw / paw_orth / paw_full | `bsematrix` `--mode` | same | BP tables | **partial** | **L1–L2** | S6 | **pw_only L2**; `paw_orth` / `paw_full` residual — do not cite without validation (quarantine) |
-| X3 | Finite-q BSE | `--q-ext` | same | BP qext artifacts | **partial** | **L0–L1** | S6 | **Quarantine** — not validated; do not cite as L2 |
-| X4 | Screened potential (WFULL) | `wfull` | — | — | **no-example** | **L1** | S6 | BSE response-basis infra |
-| X5 | BSEFATBAND / exciton BZ | `bsefatband` | `bseplot bz` | `examples/bseplot/` | **ready** | **L2** | S7 | Bundled BSEFATBAND |
-| X6 | Exciton real-space density | `bsefatband` | `bseplot realspace` | `examples/bseplot/` PNG | **needs-data** | **L1–L2** | S7 | Needs WAVECAR+OUTCAR phases |
-| D1 | Non-adiabatic couplings | `nac_from_vaspwfc` | — | — | **no-example** | **L0** | S8 | Phase fixing critical |
-| D2 | NEB path plot | — | `nebplot` | — | **no-example** | **L0** | S8 | OUTCAR post-process only |
-| D3 | Ewald / Madelung | `ewald.ewaldsum` | — | `examples/ewald/` | **ready** | **L2** | S8 | Classical point charges |
-| I1 | Physical constants | `vasp_constant` | — | — | **infra** | **L2** | S1 | VASP unit conventions |
-| I2 | Spherical harmonics | `sph_harm` | — | — | **infra** | **L1–L2** | S4 | Real/complex Ylm |
-| I3 | Cubic spline (SPLCOF) | `spline.splcof` | — | — | **infra** | **L1** | S4 | PAW radial interp |
-| I4 | Fortran binary record I/O | `wfull`, `FortranFile`, WAVECAR `recl` | — | — | **infra** | **L1** | S1 | Three coexisting styles |
+| W1 | WAVECAR I/O | `vaspwfc` | — | `examples/wfc_r/` | ready | **L2-partial** | S1 | std / γ / ncl flags |
+| W2 | G-vectors / cutoff | `vaspwfc` | — | via W1 | ready | **L1–L2** | S1 | vs OUTCAR G-count |
+| W3 | Real-space PS wfc | `wfc_r`, `save2vesta` | `wfcplot` | `examples/wfc_r/` | ready | **L2-partial** | S1 | VESTA grids |
+| W4 | PS dipole | `get_dipole_mat` | `tdmplot` | `examples/tdm/` | ready | **L2-partial** | S3 | CO2 gates `ref/l2_table.md`; WAVEDER not fully decoded |
+| W5 | IPR | IPR helpers | — | `examples/ipr/` | ready | **L0–L1** | S3 | experimental |
+| W6 | ELF | `elf` | — | `examples/elf_test/` | ready | **L2-partial** | S3 | vs ELFCAR corr≈0.986 |
+| B1 | Band unfolding | `unfold` | — | `examples/unfold/*` | needs-data | **L1–L2** | S2 | npy demos; PS weights |
+| B2 | Unfold + weights | `unfold`+PROCAR | — | `Ce@BL-MoS2_*` | needs-data | **L1** | S2 | experimental |
+| B3 | Band reorder | `reorder_band` | — | `examples/band_reorder/` | ready | **L1** | S2 | multi-k; PS overlaps |
+| B4 | PROCAR | `procar` | — | `examples/procar/` | ready | **L0–L1** | S2 | parse demo |
+| B5 | IBZ k | `hse_kpts` | — | `examples/hse_kpts/` | optional-dep | **L0–L1** | S8 | **spglib** |
+| P1 | POTCAR / partial waves | `pawpotcar` | `potplot` | `potplot/`, `projectors/` | ready | **L2-partial** | S4 | |
+| P2 | Nonlocal projectors | `nonlq`/`nonlr` | — | `examples/projectors/` | ready | **L2-partial** | S4 | vs NormalCar |
+| P3 | \(Q_{ij}\), \(\nabla_{ij}\) | `get_Qij`, … | — | `projectors/` | ready | **L1–L2** | S4 | |
+| P4 | AE wavefunction | `vasp_ae_wfc` | — | `examples/aewfc/co2/` | optional-dep | **L2-partial** | S4 | **pySBT** |
+| P5 | AE dipole | `aewfc.get_dipole_mat` | `tdmplot` | `examples/tdm/` | optional-dep | **L0–L1** | S3 | experimental |
+| O1 | SOC PAW matrix | `spinorb` | — | `examples/spinor/` | needs-data | **L2-partial** | S5 | Soc\* via patched VASP |
+| O2 | Spinor WAVECAR | `spinor` / `spinormaker` | `spinormaker` | `examples/spinor/` | needs-data | **L2-partial** | S5 | vs ncl MAE~5 meV |
+| O3 | MAE helpers | `get_mae`, … | — | via spinor dumps | needs-data | **L0–L1** | S5 | experimental |
+| X1 | BSE matrix | `bsematrix` | `bsematrix` | `examples/bsematrix/BP/` | partial | **L2-partial** | S6 | **default `pw_only`** |
+| X2 | BSE `paw_*` modes | `--mode` | same | BP tables | partial | **quarantine** | S6 | do not cite as parity |
+| X3 | Finite-q BSE | `--q-ext` | same | BP qext | partial | **quarantine** | S6 | do not cite |
+| X4 | WFULL | `wfull` | — | `examples/wfull/` | ready | **L1** | S6 | infra demo |
+| X5 | Exciton BZ | `bsefatband` | `bseplot bz` | `examples/bseplot/` | ready | **L2-partial** | S7 | bundled BSEFATBAND |
+| X6 | Exciton realspace | `bsefatband` | `bseplot realspace` | `run_realspace.sh` | needs-data | **L1** | S7 | matching WAVECAR external |
+| D1 | NAC | `nac_from_vaspwfc` | — | `examples/nac/` | needs-data | **L2-partial** | S8 | dual CO2 frames (local) |
+| D2 | NEB path | — | `nebplot` | `examples/neb/` | ready | **L0–L1** | S8 | synthetic OUTCARs ok for smoke |
+| D3 | Ewald / Madelung | `ewaldsum` | — | `examples/ewald/` | ready | **L2-partial** | S8 | classical refs |
+| I1 | Constants | `vasp_constant` | — | tests | infra | **L2** | S1 | |
+| I2 | Spherical harmonics | `sph_harm` | — | tests | infra | **L1–L2** | S4 | |
+| I3 | Spline SPLCOF | `spline` | — | tests | infra | **L1** | S4 | |
+| I4 | Fortran records | `wfull` / WAVECAR | — | tests + `wfull/` | infra | **L1** | S1 | |
 
 ---
 
 ## CLI summary
 
-| ID | Command | Source | `pip install`? | Feature IDs | Purpose |
-|---|---|---|---|---|---|
-| C1 | `wfcplot` | `bin/wfcplot` | yes | W3 | Real-space wavefunction → VESTA |
-| C2 | `tdmplot` | `bin/tdmplot` | yes | W4, P5 | Dipole / TDM spectrum |
-| C3 | `potplot` | `bin/potplot` | yes | P1 | POTCAR projectors / partial waves |
-| C4 | `nebplot` | `bin/nebplot` | yes | D2 | NEB path from OUTCARs |
-| C5 | `bseplot` | `bin/bseplot` | yes | X5, X6 | Exciton BZ or real-space density |
-| C6 | `spinormaker` | `bin/spinormaker` | yes | O2 | SOC spinor WAVECAR |
-| C7 | `bsematrix` | `bin/bsematrix` | **yes** | X1–X3 | Build/diagonalize BSE matrix |
-
-Common flags (1-based VASP indices): `-w` WAVECAR, `-p` POSCAR/POTCAR, `-s` spin, `-k` k-point, `-n` band.
-
----
-
-## Examples coverage map
-
-| `examples/` path | Feature IDs | Runnable as shipped? |
-|---|---|---|
-| `wfc_r/` | W1–W3 | **Yes** (has `WAVECAR`) |
-| `unfold/` | B1, B2 | Partial (plots/`.npy`; often no `WAVECAR`) |
-| `spinor/` | O1, O2 | Partial (inputs + README; Soc\* often missing) |
-| `projectors/` | P1, P2 | **Yes** |
-| `aewfc/co2/` | P4 | **Yes** if `pySBT` installed |
-| `bsematrix/BP/` | X1–X3 | Compare text artifacts; full rebuild needs VASP tree |
-| `bseplot/` | X5, X6 | **`bz` yes**; `realspace` needs `WAVECAR` |
-| `elf_test/` | W6 | Runnable; physics **L0** |
-| `ewald/` | D3 | **Yes** (stdout; add ref file for CI) |
-| `potplot/` | P1 | Result image only |
-| `band_reorder/` | B3 | Partial (no full script+`WAVECAR`) |
-
-**No dedicated example directory:** B4 PROCAR, D1 NAC, D2 NEB, W4/P5 TDM end-to-end, B5 HSE k, X4 standalone WFULL, W5 IPR, O3 MAE.
+| ID | Command | Installed? | Feature IDs |
+|---|---|---|---|
+| C1 | `wfcplot` | yes | W3 |
+| C2 | `tdmplot` | yes | W4, P5 |
+| C3 | `potplot` | yes | P1 |
+| C4 | `nebplot` | yes | D2 |
+| C5 | `bseplot` | yes | X5, X6 |
+| C6 | `spinormaker` | yes | O2 |
+| C7 | `bsematrix` | yes | X1–X3 (default **pw_only**) |
 
 ---
 
 ## Dependencies
 
-| Dependency | Feature IDs | Declared? |
+| Package | Feature IDs | Declared? |
 |---|---|---|
-| `numpy`, `scipy`, `matplotlib`, `ase` | core | yes |
-| `pySBT` | P4, P5 | optional (`requirements-optional.txt`) |
-| `spglib` | B5 | yes (`requirements-optional.txt`) |
+| numpy, scipy, matplotlib, ase | core | yes |
+| pySBT | P4, P5 | optional |
+| spglib | B5 | optional (`requirements-optional.txt`) |
 
 ---
 
-## Quick “what works out of the box”
+## Verify
 
 ```bash
-python -c "import vaspwfc, unfold, paw, ewald, bsefatband; print('ok')"
-python examples/wfc_r/ex.py
-python examples/ewald/madelung.py
-python examples/projectors/lreal_false/kaka.py
-bseplot bz --input examples/bseplot/BSEFATBAND --poscar examples/bseplot/POSCAR --exciton 1
+python scripts/smoke_examples.py
+PYTHONPATH=. python -m pytest tests/ -q
 ```
 
-Needs external VASP outputs or cluster jobs: B1 recompute, O2 with Soc\*, X6, full X1 rebuild, D1, D2.
-
----
-
-## Related docs
-
-- [`docs/CITATION_POLICY.md`](docs/CITATION_POLICY.md) — what may be cited
-
-
-- [`docs/GOALS.md`](docs/GOALS.md) — secondary development goals (G1 proof, G2 reuse)
-- [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md) — seminars, phases, coverage matrix  
-- [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md) — physics/numerics limits  
-- [`README.md`](README.md) · [`AGENTS.md`](AGENTS.md) · [`doc/VaspBandUnfolding.pdf`](doc/VaspBandUnfolding.pdf)
-- [`docs/EXAMPLE_MATRIX.md`](docs/EXAMPLE_MATRIX.md) — C1 example status per science ID
+Details: [`docs/STATUS.md`](docs/STATUS.md).

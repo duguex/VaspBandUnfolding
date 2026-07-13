@@ -7,6 +7,8 @@ Companion docs: [`FEATURES.md`](../FEATURES.md) (inventory) · [`GOALS.md`](GOAL
 
 ---
 
+Live engineering status: [`STATUS.md`](STATUS.md) · citation: [`CITATION_POLICY.md`](CITATION_POLICY.md).
+
 ## 1. Purpose
 
 | Goal | What “done” means for experts |

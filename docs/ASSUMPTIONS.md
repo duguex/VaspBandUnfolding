@@ -3,7 +3,7 @@
 Cross-cutting physical and numerical assumptions for **VaspBandUnfolding** (PyVaspWfc).  
 Audience: first-principles specialists. Use this when reviewing results, citing the code, or extending methods.
 
-Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md) and [`ACADEMIC_ROADMAP.md`](ACADEMIC_ROADMAP.md).
+Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md), live status [`STATUS.md`](STATUS.md), citation [`CITATION_POLICY.md`](CITATION_POLICY.md), and [`ACADEMIC_ROADMAP.md`](ACADEMIC_ROADMAP.md).
 
 **Rule of thumb:** If an assumption below is violated, treat the corresponding feature as **exploratory (L0–L1)** even if the code runs cleanly.
 
@@ -158,7 +158,7 @@ Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md) 
 | Input orbitals | Collinear or ISPIN=2 WAVECAR + PAW SOC dumps (`NormalCAR`, `SocCar`, `SocRadCar` as required by the path) |
 | Physics | Second-variation / basis-expansion style SOC assembly — **not** automatically identical to self-consistent noncollinear SCF |
 | Band pairing | Odd/even spinor pairs and `mixwave-ibs` selection are part of the method definition |
-| Validation | README valley/sz snapshots are **case-specific**; do not generalize without new L2 checks |
+| Validation | MoSe2: `examples/spinor/ref/spinor_vs_ncl.txt` — eigenvalue MAE ~ few meV vs SCF ncl+LSORBIT; **not** identity. Dumps via patched VASP ([`repro/O2_local_vasp_patch_build.md`](repro/O2_local_vasp_patch_build.md)) |
 | MAE helpers (O3) | Estimators depend on occupation / Fermi policy in helpers — document occupations when quoting meV-scale MAE |
 
 ---
@@ -169,9 +169,9 @@ Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md) 
 
 | Mode | Intent | Present stance |
 |---|---|---|
-| `pw_only` | Plane-wave / full-grid-like pieces without full PAW kernel | **Best-behaved** on BP benchmarks; preferred for L2 discussion |
-| `paw_orth_only` | Partial PAW orthogonalization path | Larger residuals vs VASP — **not** citation-grade without revalidation |
-| `paw_full` | FAST_AUG-oriented reconstruction needing VASP dumps (`BSE_TRANS_MATRIX_FOCK.bin`, `BSE_FASTAUG_FOCK.bin`) | Improves some exchange-only cases; direct/both still sizable residuals |
+| `pw_only` | Plane-wave / full-grid-like pieces without full PAW kernel | **CLI default**; best BP residuals; only mode for careful citation (**l2-partial**) |
+| `paw_orth_only` | Partial PAW orthogonalization path | **quarantine** vs VASP BP tables |
+| `paw_full` | FAST_AUG-oriented reconstruction needing VASP dumps (`BSE_TRANS_MATRIX_FOCK.bin`, `BSE_FASTAUG_FOCK.bin`) | **quarantine** for production claims |
 
 **Interaction channels:** direct vs Hartree/exchange naming follows the bsematrix/BP README (exchange-only ↔ Hartree-term example naming). Always state which channel was built.
 
@@ -204,7 +204,8 @@ Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md) 
 
 ### 7.7 CLI install (C7)
 
-- `bin/bsematrix` may be absent from `pip` console scripts; invoking `python bsematrix.py` is the reliable interface until packaging is unified.
+- `bsematrix` is installed via `pyproject.toml` `script-files` (with `bin/bsematrix`). Default `--mode pw_only`.  
+- Prefer `python -m` / installed entry points over ad-hoc path hacks in new docs.
 
 ---
 
@@ -216,7 +217,7 @@ Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md) 
 - Requires **phase alignment** between frames; raw \(\langle\psi_i|\psi_j\rangle\) without phase fixing is gauge-dependent.  
 - Time step `dt` enters as a scale — units must match the trajectory.  
 - γ-only and spin-polarized cases need matching flags on both WAVECARs.  
-- No example suite yet ⇒ default **L0** for claims.
+- Dual CO2 frames: `examples/nac/md_frames/` (local/gitignored) + `ref/nac_md_summary.txt` — **l2-partial** smoke, not full MD validation.
 
 ### 8.2 NEB plotting (D2)
 
@@ -231,7 +232,7 @@ Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md) 
 
 ### 8.4 IBZ k (B5)
 
-- Relies on **spglib** symmetry (optional, historically undeclared in packaging).  
+- Relies on **spglib** (optional; listed in `requirements-optional.txt`, may need manual `pip install spglib`).  
 - Symmetry tolerance `symprec` changes irreducible sets near higher-symmetry structures.  
 - Not guaranteed to match VASP’s symmetry engine bit-for-bit; compare weights to `IBZKPT` before production hybrid runs.
 
@@ -243,12 +244,12 @@ Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md) 
 |---|---|
 | “Matches VASP on this table/figure” | L2 evidence in-repo or attached, same inputs, stated software versions |
 | “Physically complete AE optical matrix element” | Never from PS-only W4; P5 still needs explicit formalism + L2 |
-| “Equivalent to self-consistent SOC” | Not from spinormaker alone without ncl comparison |
-| “Production BSE kernel (all modes)” | Only for modes/channels with current L2; exclude finite-q until fixed |
-| “ELF identical to VASP” | Not until W6 validated |
+| “Equivalent to self-consistent SOC” | Not from spinormaker alone; ncl compare shows ~meV MAE, not identity |
+| “Production BSE kernel (all modes)” | Only **`pw_only`** (l2-partial); never paw\*/finite-q as validated |
+| “ELF identical to VASP” | No — demo ELFCAR corr high but grid/order caveats remain |
 | “Unfolded EBS is AE-accurate” | No — PS spectral weights |
+| “Full L2 dipole vs VASP optics” | No until WAVEDER/element-wise matrix is gated |
 
----
 
 ## 10. Recording checklist (for any serious result)
 
