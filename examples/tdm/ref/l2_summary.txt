@@ -6,3 +6,5 @@ gate_eig=True
 gate_dark=True
 gate_bright=True
 overall_pass=True
+WAVEDER_bytes=9344
+WAVEDER_note=present but not decoded in this gate

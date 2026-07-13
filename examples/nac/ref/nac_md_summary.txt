@@ -1,0 +1,6 @@
+waveA=examples/nac/md_frames/frame0/WAVECAR
+waveB=examples/nac/md_frames/frame1/WAVECAR
+dt=1.0 fs (nominal)
+shape=(8, 8)
+max_abs=1.98931397e+00
+note=two CO2 geometries with O displaced ±0.05 A along z

@@ -62,3 +62,50 @@ run_case ispin2 2 152
 echo "=== examples/spinor/run.sh ==="
 (cd "$ROOT/examples/spinor" && bash run.sh)
 echo "DONE"
+
+# Optional: SCF ncl+LSORBIT reference (expensive)
+if [[ "${REGEN_NCL_REF:-0}" == "1" ]]; then
+  VASP_NCL="${VASP_NCL:-$ROOT/third_party/vasp.5.4.4.pl2/bin/vasp_ncl}"
+  W="$ROOT/examples/spinor/spinless/ncl_ref_work"
+  mkdir -p "$W"
+  cp "$ROOT/examples/spinor/spinless/POSCAR" "$ROOT/examples/spinor/spinless/POTCAR" \
+     "$ROOT/examples/spinor/spinless/KPOINTS" "$W/"
+  cat > "$W/INCAR" <<'IN'
+SYSTEM = MoSe2 ncl LSORBIT ref
+PREC = Normal
+ENCUT = 225
+ISTART = 0
+ICHARG = 2
+ISMEAR = 0
+SIGMA = 0.1
+ALGO = Normal
+NELM = 120
+EDIFF = 1E-6
+ISYM = 0
+LREAL = Auto
+LWAVE = .TRUE.
+LCHARG = .FALSE.
+LNONCOLLINEAR = .TRUE.
+LSORBIT = .TRUE.
+SAXIS = 0 0 1
+NBANDS = 272
+NCORE = 4
+IN
+  (cd "$W" && OMP_NUM_THREADS=1 mpirun -np "$NP" "$VASP_NCL" > vasp.log 2>&1)
+  export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
+  python - <<PY
+from pathlib import Path
+import numpy as np
+from vaspwfc import vaspwfc
+ncl=vaspwfc("$W/WAVECAR", lsorbit=True)
+sm=vaspwfc("$ROOT/examples/spinor/spinless/soc_dump_work/WAVECAR_spinor", lsorbit=True)
+en=np.sort(ncl._bands[0,0,:]); es=np.sort(sm._bands[0,0,:])
+n=min(en.size, es.size)
+mae=float(np.mean(np.abs(en[:n]-es[:n])))
+Path("$ROOT/examples/spinor/ref").mkdir(exist_ok=True)
+Path("$ROOT/examples/spinor/ref/spinor_vs_ncl.txt").write_text(
+    f"eig_mae_all={mae:.6e}\nncl_nb={ncl._nbands} sm_nb={sm._nbands}\n"
+)
+print("ncl compare MAE", mae)
+PY
+fi

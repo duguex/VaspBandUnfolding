@@ -31,7 +31,7 @@ Companion: [`FEATURES.md`](../FEATURES.md) · [`ASSUMPTIONS.md`](ASSUMPTIONS.md)
 | X4 | WFULL reader | **experimental** | infra |
 | X5 | Exciton BZ | **l2-partial** | `bseplot` demo |
 | X6 | Exciton realspace | **experimental** | needs matching WAVECAR |
-| D1 | NAC | **experimental** | smoke with identical frames |
+| D1 | NAC | **l2-partial** | dual CO2 frames `md_frames/` (gitignored); nonzero NAC |
 | D2 | NEB plot | **experimental** | synthetic OUTCARs |
 | D3 | Ewald | **l2-partial** | Madelung demo + test |
 

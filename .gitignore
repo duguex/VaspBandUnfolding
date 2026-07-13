@@ -21,3 +21,4 @@ third_party/soc_dump_test/
 examples/tdm/vasp_optics/work/
 examples/tdm/vasp_optics/output/
 examples/spinor/**/ncl_ref_work/
+examples/nac/md_frames/

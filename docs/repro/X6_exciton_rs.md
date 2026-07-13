@@ -1,49 +1,29 @@
-# X6: Exciton Real-Space Density — Reproduction Recipe
+# X6: Exciton real-space density
 
-## Overview
+## Requirement
 
-X6 reconstructs the real-space electron/hole density of a selected
-exciton from `BSEFATBAND` and the full `WAVECAR`.  The reconstruction
-requires the Bloch-state phases from `WAVECAR` to assemble the
-exciton envelope in real space, which is why the `WAVECAR` must be
-from the **same** VASP run that produced the `BSEFATBAND`.
+`BSEFATBAND` + **matching** `WAVECAR` (+ `OUTCAR` for symmetry/IBZ) from the same BSE calculation.
 
-The example `examples/bseplot/` only bundles the `BSEFATBAND` file
-(for X5 / `bseplot bz`), not the full `WAVECAR`.
+Bundled under `examples/bseplot/`: `BSEFATBAND`, `OUTCAR`, `POSCAR` — **not** the production WAVECAR (size).
 
-## Reproduction outline
+## How to run when you have WAVECAR
 
-1.  Run a VASP GW/BSE workflow that produces both `BSEFATBAND`
-    and the matching `WAVECAR` / `OUTCAR` / `POSCAR`.
-2.  Copy `WAVECAR`, `OUTCAR`, `POSCAR`, `BSEFATBAND`,
-    `BSEFATBAND_bse` into a working directory.
-3.  Run:
-    ```bash
-    bseplot realspace \
-        --bsefatband BSEFATBAND \
-        --wavecar WAVECAR \
-        --poscar POSCAR \
-        --outcar OUTCAR \
-        --exciton 1 \
-        --output x1_density.vasp
-    ```
+```bash
+export VBU_BSE_WAVECAR=/path/to/WAVECAR
+cd examples/bseplot
+bash run_realspace.sh
+# or:
+bseplot realspace --bsefatband BSEFATBAND --wavecar "$VBU_BSE_WAVECAR" \
+  --poscar POSCAR --exciton 1 --hole 0.5,0.5,0.5 --output-dir ref
+```
 
-## Data requirements (crisp)
+## BZ-only path (no WAVECAR)
 
-| Artifact | Role |
-|----------|------|
-| `WAVECAR` | Phase information for Bloch states |
-| `OUTCAR` | Band energies, symmetry ops |
-| `POSCAR` | Lattice vectors |
-| `BSEFATBAND` | Exciton coefficients |
-| `BSEFATBAND_bse` | VASP binary (if available) |
+```bash
+cd examples/bseplot && bash run.sh   # bseplot bz
+```
 
-## Current status
+## Status
 
-- **X6**: L1–L2 (`bseplot realspace` works when a WAVECAR is
-  supplied; the bundled example only covers X5 (BZ density) because
-  the WAVECAR is not checked in).
-- The example is `skip` in the C1 smoke test for this reason.
-
-> See `examples/bseplot/README.md` and `FEATURES.md` for current
-> level assignments.
+- **X5 bz**: ok / l2-partial  
+- **X6 realspace**: experimental until matching WAVECAR is supplied

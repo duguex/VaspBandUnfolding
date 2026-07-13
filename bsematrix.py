@@ -2209,10 +2209,11 @@ def _write_bsefatband(
 def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     """Build the command-line interface for the standalone script."""
     parser = argparse.ArgumentParser(
-        epilog="WARNING: paw_orth_only/paw_full and finite-q are quarantine vs VASP BP tables; prefer --mode pw_only. See docs/CITATION_POLICY.md.",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        
         description="Build Hartree/direct BSE matrix elements using the local full-grid path.",
+        epilog=(
+            "WARNING: paw_orth_only/paw_full and finite-q are quarantine vs VASP BP tables; "
+            "prefer --mode pw_only. See docs/CITATION_POLICY.md."
+        ),
         formatter_class=_DefaultsFormatter,
     )
     parser.add_argument("--wavecar", default="WAVECAR", help="Path to WAVECAR")
