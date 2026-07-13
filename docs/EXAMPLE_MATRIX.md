@@ -5,7 +5,7 @@
 | W1 | `examples/wfc_r/` | `bash run.sh` | ok | l2-partial | Extend existing: WAVECAR I/O, gamma-only, ncl |
 | W2 | `examples/wfc_r/` | `bash run.sh` | ok | l2-partial | Extend existing: G-vector set / cutoff sphere |
 | W3 | `examples/wfc_r/` | `bash run.sh` | ok | l2-partial | Extend existing: real-space PS wavefunction |
-| W4 | `examples/tdm/` | `bash run.sh` | ok | experimental | New: transition dipole matrix elements (PS) |
+| W4 | `examples/tdm/` | `bash run.sh` | ok | l2-partial | CO2 gates in ref/l2_table.md; see docs/CITATION_POLICY.md |
 | W5 | `examples/ipr/` | `bash run.sh` | ok | experimental | New: inverse participation ratio |
 | W6 | `examples/elf_test/` | `bash run.sh` | ok | experimental | ELF from WAVECAR; ELFCAR metric in ref; quarantine |
 | B1 | `examples/unfold/sup_3x3x1/` | `bash run.sh` | ok | l2-partial | spectral_weight.npy shape/sum metric in ref |

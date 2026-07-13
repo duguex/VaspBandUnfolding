@@ -20,6 +20,7 @@ Author: Qijing Zheng (zqj.kaka@gmail.com) · [GitHub](https://github.com/QijingZ
 - Full feature checklist (module / CLI / example / status): [`FEATURES.md`](FEATURES.md)
 - Secondary development goals (scientific proof + reusable components): [`docs/GOALS.md`](docs/GOALS.md)
 - Expert academic roadmap (all feature IDs, seminars, validation levels): [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md)
+- Citation policy: [`docs/CITATION_POLICY.md`](docs/CITATION_POLICY.md)
 - Assumptions & interpretation limits: [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md)
 
 ## Collaboration & Git policy (mandatory)

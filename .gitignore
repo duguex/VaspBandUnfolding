@@ -18,3 +18,5 @@ third_party/vasp*/
 # large local VASP dump workdirs (regenerate with patched vasp)
 examples/spinor/**/soc_dump_work/
 third_party/soc_dump_test/
+examples/tdm/vasp_optics/work/
+examples/tdm/vasp_optics/output/

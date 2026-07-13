@@ -1,0 +1,8 @@
+workdir=/home/duguex/VaspBandUnfolding/examples/tdm/vasp_optics/work
+e_err_eV=4.6174847439406363e-05
+dark_max_Debye=2.478203956084544e-06
+bright_max_Debye=3.3603863432247794
+gate_eig=True
+gate_dark=True
+gate_bright=True
+overall_pass=True

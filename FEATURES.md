@@ -50,7 +50,7 @@ CLI install note: **`bsematrix`** is now registered in `pyproject.toml` `script-
 | W1 | WAVECAR I/O (std / γ-only / ncl) | `vaspwfc.vaspwfc` | — | `examples/wfc_r/` | **ready** | **L2** | S1 | `lgamma`, `lsorbit`, `gamma_half`; see ASSUMPTIONS §2 |
 | W2 | G-vector set / cutoff sphere | `vaspwfc` G helpers | — | via W1/OUTCAR | **ready** | **L1–L2** | S1 | Compare G-count to OUTCAR |
 | W3 | Real-space PS wavefunction | `wfc_r` / `get_ps_wfc`, `save2vesta` | `wfcplot` | `examples/wfc_r/` | **ready** | **L2** | S1 | VESTA `.vasp`; phase non-unique for Re/Im |
-| W4 | Transition dipole (PS) | `get_dipole_mat` | `tdmplot` | README snippet only | **no-example** | **L0–L1** | S3 | p–r; periodic caveat PRB 87, 125301. **Experimental** — do not cite as L2 until VASP OPTICS benchmark exists (see `docs/repro/W4_dipole.md`) |
+| W4 | Transition dipole (PS) [l2-partial CO2] | `get_dipole_mat` | `tdmplot` | README snippet only | **no-example** | **L0–L1** | S3 | p–r; periodic caveat PRB 87, 125301. **Experimental** — do not cite as L2 until VASP OPTICS benchmark exists (see `docs/repro/W4_dipole.md`) |
 | W5 | Inverse participation ratio | IPR helpers | — | README only | **no-example** | **L0–L1** | S3 | Grid-dependent |
 | W6 | Electron localization function | `elf` | — | `examples/elf_test/` | **unverified** | **L0** | S3 | **Experimental** — do not cite as L2; needs validation vs VASP ELFCAR (`docs/repro/` pending) |
 | B1 | Band unfolding (EBS) | `unfold`, `spectral_weight`, `EBS_*` | — | `examples/unfold/*` | **needs-data** | **L1–L2** | S2 | PS weights; npy/PNG cached |
@@ -143,6 +143,9 @@ Needs external VASP outputs or cluster jobs: B1 recompute, O2 with Soc\*, X6, fu
 ---
 
 ## Related docs
+
+- [`docs/CITATION_POLICY.md`](docs/CITATION_POLICY.md) — what may be cited
+
 
 - [`docs/GOALS.md`](docs/GOALS.md) — secondary development goals (G1 proof, G2 reuse)
 - [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md) — seminars, phases, coverage matrix  
