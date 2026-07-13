@@ -27,6 +27,6 @@
 | X4 | `examples/wfull/` | `bash run.sh` | ok | experimental | New: screened potential (WFULL) |
 | X5 | `examples/bseplot/` | `bash run.sh` | ok | l2-partial | Extend existing: BSEFATBAND / exciton BZ |
 | X6 | `examples/bseplot/` | `bash run.sh` | skip | repro-pending | realspace needs WAVECAR not bundled (see docs/repro/X6.md) |
-| D1 | `examples/nac/` | `bash run.sh` | ok | l2-partial | dual-frame CO2 md_frames (local); max|NAC|~2 |
+| D1 | `examples/nac/` | `bash run.sh` | ok | l2-partial | dual-frame CO2 md_frames (local); max_abs_NAC~2 |
 | D2 | `examples/neb/` | `bash run.sh` | ok | experimental | New: NEB path PES with synthetic OUTCAR stubs |
 | D3 | `examples/ewald/` | `bash run.sh` | ok | l2-partial | Extend existing: Ewald / Madelung |
