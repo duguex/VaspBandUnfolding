@@ -6,7 +6,7 @@
 Last verified (local):
 
 ```text
-python scripts/smoke_examples.py   → pass=20 skip=0 fail=0
+python scripts/smoke_examples.py   → pass=21 skip=0 fail=0
 PYTHONPATH=. python -m pytest tests/ -q  → 31 passed
 ```
 
@@ -29,6 +29,8 @@ PYTHONPATH=. python -m pytest tests/ -q  → 31 passed
 | Dual-frame NAC | `examples/nac/md_frames/` (gitignored) |
 | WAVEDER reader | `waveder.py` + `examples/tdm/compare_waveder.py` |
 | X6 CO2 demo | `examples/bseplot/co2_demo/` realspace pipeline |
+| X6 MoSe2 recompute | `examples/bseplot/mose2_recompute/` (6×6×1 SCF+bsematrix; dumps gitignored) |
+| AE vs WAVEDER | `examples/tdm/compare_ae_waveder.py` (AE path active; not CDER L2) |
 
 ## C1 smoke
 
@@ -41,7 +43,7 @@ See [`CITATION_POLICY.md`](CITATION_POLICY.md). Short version:
 - **Default BSE mode:** `pw_only` (CLI). `paw_*` and finite-q → **quarantine**.
 - **l2-partial (usable with caveats):** W1–W4, W6, B1, P1–P4, O1–O2, X1, X5, D1, D3, …
 - **experimental:** W5, B2–B5, P5, O3, X4, X6, D2, …
-- **Not full paper L2:** PS dipole ≠ WAVEDER CDER (PAW); BSE paw/direct/finite-q quarantine; MoSe2 X6 needs production WAVECAR.
+- **Not full paper L2:** PS/AE p–r ≠ WAVEDER CDER element-wise; BSE paw/direct/finite-q **deferred** (quarantine kept); MoSe2 X6 recompute is self-consistent pipeline, not bundled VASP BSE parity.
 
 ## Large / proprietary (not in git)
 

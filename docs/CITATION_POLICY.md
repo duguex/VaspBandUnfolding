@@ -14,7 +14,7 @@ Companion: [`FEATURES.md`](../FEATURES.md) · [`STATUS.md`](STATUS.md) · [`ASSU
 | IDs | Component | Citation now | Evidence |
 |---|---|---|---|
 | W1–W3 | WAVECAR / real-space PS | **l2-partial** | `examples/wfc_r` smoke + widespread use |
-| W4 | PS dipole | **l2-partial** | optics gates + `waveder` decode (`ref/waveder_summary.txt`); not CDER element-wise (PAW) |
+| W4 | PS dipole | **l2-partial** | optics + `waveder`; AE path `compare_ae_waveder.py` (≠ CDER L2) |
 | W5 | IPR | **experimental** | analytic/demo only |
 | W6 | ELF | **l2-partial** | `examples/elf_test/ref/elf_vs_vasp.txt` (corr≳0.98 demo) |
 | B1–B2 | Unfold | **l2-partial** | npy/EBS demos; PS-only weights |
@@ -27,10 +27,10 @@ Companion: [`FEATURES.md`](../FEATURES.md) · [`STATUS.md`](STATUS.md) · [`ASSU
 | O1–O2 | SOC matrix / spinormaker | **l2-partial** | dumps + spinormaker; vs SCF ncl MAE~5 meV |
 | O3 | MAE helpers | **experimental** | not gated |
 | X1 | BSE `pw_only` | **l2-partial** | BP tables; **CLI default** |
-| X2–X3 | BSE paw / finite-q | **quarantine** | large residuals |
+| X2–X3 | BSE paw / finite-q | **quarantine (deferred)** | residuals pinned; algorithm fix postponed |
 | X4 | WFULL reader | **experimental** | infra |
 | X5 | Exciton BZ | **l2-partial** | `bseplot` demo |
-| X6 | Exciton realspace | **l2-partial** | CO2 self-consistent demo `examples/bseplot/co2_demo/`; MoSe2 VASP parity still needs full WAVECAR |
+| X6 | Exciton realspace | **l2-partial** | CO2 + MoSe2 `mose2_recompute` pipelines; not VASP ALGO=BSE parity to bundled fatband |
 | D1 | NAC | **l2-partial** | dual CO2 frames (local); nonzero NAC |
 | D2 | NEB plot | **experimental** | synthetic OUTCARs |
 | D3 | Ewald | **l2-partial** | Madelung demo + tests |

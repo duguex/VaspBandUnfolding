@@ -28,3 +28,13 @@ examples/bseplot/co2_demo/WAVECAR
 examples/bseplot/co2_demo/AMAT.npz
 examples/bseplot/co2_demo/ref/*.vasp
 examples/tdm/vasp_optics/work/
+
+# MoSe2 X6 recompute dumps
+examples/bseplot/mose2_recompute/work/
+examples/bseplot/mose2_recompute/AMAT.npz
+examples/bseplot/mose2_recompute/ref/*.vasp
+examples/bseplot/mose2_recompute/BSEFATBAND
+examples/bseplot/mose2_recompute/POTCAR
+examples/bseplot/mose2_recompute/AMAT.txt
+examples/bseplot/mose2_recompute/ref/*_SC_POSCAR
+examples/bseplot/co2_demo/ref/*_SC_POSCAR

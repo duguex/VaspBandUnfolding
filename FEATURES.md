@@ -59,12 +59,12 @@ CLI: `bsematrix` is in `pyproject.toml` `script-files`. Default `--mode pw_only`
 | P2 | Nonlocal projectors | `nonlq`/`nonlr` | — | `examples/projectors/` | ready | **L2-partial** | S4 | vs NormalCar |
 | P3 | \(Q_{ij}\), \(\nabla_{ij}\) | `get_Qij`, … | — | `projectors/` | ready | **L1–L2** | S4 | |
 | P4 | AE wavefunction | `vasp_ae_wfc` | — | `examples/aewfc/co2/` | optional-dep | **L2-partial** | S4 | **pySBT** |
-| P5 | AE dipole | `aewfc.get_dipole_mat` | `tdmplot` | `examples/tdm/` | optional-dep | **L0–L1** | S3 | experimental |
+| P5 | AE dipole | `aewfc.get_dipole_mat` | `tdmplot` | `examples/tdm/` | ready | **L2-partial** | S3 | AE path vs WAVEDER documented; not CDER L2 |
 | O1 | SOC PAW matrix | `spinorb` | — | `examples/spinor/` | needs-data | **L2-partial** | S5 | Soc\* via patched VASP |
 | O2 | Spinor WAVECAR | `spinor` / `spinormaker` | `spinormaker` | `examples/spinor/` | needs-data | **L2-partial** | S5 | vs ncl MAE~5 meV |
 | O3 | MAE helpers | `get_mae`, … | — | via spinor dumps | needs-data | **L0–L1** | S5 | experimental |
 | X1 | BSE matrix | `bsematrix` | `bsematrix` | `examples/bsematrix/BP/` | partial | **L2-partial** | S6 | **default `pw_only`** |
-| X2 | BSE `paw_*` modes | `--mode` | same | BP tables | partial | **quarantine** | S6 | do not cite as parity |
+| X2 | BSE `paw_*` modes | `--mode` | same | BP tables | partial | **quarantine** | S6 | deferred algorithm fix; residuals regression-tested |
 | X3 | Finite-q BSE | `--q-ext` | same | BP qext | partial | **quarantine** | S6 | do not cite |
 | X4 | WFULL | `wfull` | — | `examples/wfull/` | ready | **L1** | S6 | infra demo |
 | X5 | Exciton BZ | `bsefatband` | `bseplot bz` | `examples/bseplot/` | ready | **L2-partial** | S7 | bundled BSEFATBAND |

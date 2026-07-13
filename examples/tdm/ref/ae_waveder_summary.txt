@@ -1,0 +1,16 @@
+nocc=8 nbands=24 nbands_cder=16
+pairs=128 both_sig=10 ae_diff_pairs=114
+parse_ok=True ae_one_center_active=True
+both_median_rel_ae=1.045857
+both_median_rel_ps=1.024496
+top_both n m dE abs_ae abs_ps abs_wd rel_ae rel_ps
+    3  11   13.168 5.674e-01 1.090e+00 2.573e-01 1.000 1.000
+    7  15   10.098 2.231e-01 3.386e-01 5.359e-01 1.416 1.632
+    2   9   27.012 1.500e-01 1.144e-01 3.377e-01 1.000 1.000
+    2  18   30.269 1.173e-01 6.265e-02 1.279e+00 1.092 1.049
+    3  24   16.400 1.159e-01 1.263e-01 9.267e-01 0.875 0.864
+    7  13    9.995 1.152e-01 1.152e-01 2.303e-01 1.500 1.500
+    3  15   14.827 8.789e-02 1.000e-01 4.497e-01 1.195 1.222
+    8  21   11.505 8.726e-02 8.726e-02 3.138e-01 0.722 0.722
+overall_pass=True
+note=AE/PAW path runs and differs from PS on some pairs; neither matches WAVEDER CDER element-wise (VASP optics vs p-r). Citation remains l2-partial for W4/P5.

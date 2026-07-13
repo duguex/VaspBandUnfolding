@@ -1,0 +1,8 @@
+system=MoSe2_primitive
+density_file=mose2_x1_001_electron_rho.vasp
+density_bytes=4754997
+n_floats_parsed=295251
+min=-9.960000e+00
+max=2.491594e+03
+sum=6.674356e+06
+note=self-consistent recompute pipeline
