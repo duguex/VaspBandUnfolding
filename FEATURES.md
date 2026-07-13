@@ -47,7 +47,7 @@ CLI: `bsematrix` is in `pyproject.toml` `script-files`. Default `--mode pw_only`
 | W1 | WAVECAR I/O | `vaspwfc` | — | `examples/wfc_r/` | ready | **L2-partial** | S1 | std / γ / ncl flags |
 | W2 | G-vectors / cutoff | `vaspwfc` | — | via W1 | ready | **L1–L2** | S1 | vs OUTCAR G-count |
 | W3 | Real-space PS wfc | `wfc_r`, `save2vesta` | `wfcplot` | `examples/wfc_r/` | ready | **L2-partial** | S1 | VESTA grids |
-| W4 | PS dipole | `get_dipole_mat` | `tdmplot` | `examples/tdm/` | ready | **L2-partial** | S3 | CO2 gates `ref/l2_table.md`; WAVEDER not fully decoded |
+| W4 | PS dipole | `get_dipole_mat`, `waveder` | `tdmplot` | `examples/tdm/` | ready | **L2-partial** | S3 | optics + WAVEDER decode; PS≠CDER element-wise |
 | W5 | IPR | IPR helpers | — | `examples/ipr/` | ready | **L0–L1** | S3 | experimental |
 | W6 | ELF | `elf` | — | `examples/elf_test/` | ready | **L2-partial** | S3 | vs ELFCAR corr≈0.986 |
 | B1 | Band unfolding | `unfold` | — | `examples/unfold/*` | needs-data | **L1–L2** | S2 | npy demos; PS weights |
@@ -68,7 +68,7 @@ CLI: `bsematrix` is in `pyproject.toml` `script-files`. Default `--mode pw_only`
 | X3 | Finite-q BSE | `--q-ext` | same | BP qext | partial | **quarantine** | S6 | do not cite |
 | X4 | WFULL | `wfull` | — | `examples/wfull/` | ready | **L1** | S6 | infra demo |
 | X5 | Exciton BZ | `bsefatband` | `bseplot bz` | `examples/bseplot/` | ready | **L2-partial** | S7 | bundled BSEFATBAND |
-| X6 | Exciton realspace | `bsefatband` | `bseplot realspace` | `run_realspace.sh` | needs-data | **L1** | S7 | matching WAVECAR external |
+| X6 | Exciton realspace | `bsefatband` | `bseplot realspace` | `bseplot/co2_demo/` | ready | **L2-partial** | S7 | CO2 self-consistent demo; MoSe2 needs WAVECAR |
 | D1 | NAC | `nac_from_vaspwfc` | — | `examples/nac/` | needs-data | **L2-partial** | S8 | dual CO2 frames (local) |
 | D2 | NEB path | — | `nebplot` | `examples/neb/` | ready | **L0–L1** | S8 | synthetic OUTCARs ok for smoke |
 | D3 | Ewald / Madelung | `ewaldsum` | — | `examples/ewald/` | ready | **L2-partial** | S8 | classical refs |

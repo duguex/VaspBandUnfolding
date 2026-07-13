@@ -318,6 +318,25 @@ See [`FEATURES.md`](../../../FEATURES.md) X1–X3 for current levels.
 | finite-q both | `paw_orth_only` | 0.03391579 | 0.10749209 | `(12,9)` |
 | finite-q both | `paw_full` | 0.01905383 | 0.06847281 | `(15,12)` |
 
+
+
+### Residual structure (off-diagonal only)
+
+Diagonals differ by storage convention (VASP puts pair energies on the diagonal;
+Python clears them).  Metrics below match the summary table when **diagonals are
+zeroed** before `max(abs)` / Frobenius.
+
+Notable:
+
+- **`exchange_only` + `paw_full`** has the *smallest* kernel residual (better than
+  `pw_only` for exchange) — PAW source for Hartree/exchange is useful.
+- **`direct_only` / `both` with `paw_*`** remain worse than `pw_only` → direct /
+  screened channel + orth incomplete → keep **quarantine**.
+- **Finite-q** residuals are systematically larger (~0.02 eV maxabs even for
+  `pw_only`) → **quarantine** until q/head conventions are reworked.
+
+Regression: `tests/test_bse_amat_residuals.py`.
+
 ## Direct-only: first 10 BSE eigenvalues
 
 `pw_only` remains the closest mode for this benchmark. The current `paw_orth_only` and `paw_full` runs are intentionally kept here as comparison data, not as parity-quality references.

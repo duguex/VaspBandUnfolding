@@ -22,3 +22,9 @@ examples/tdm/vasp_optics/work/
 examples/tdm/vasp_optics/output/
 examples/spinor/**/ncl_ref_work/
 examples/nac/md_frames/
+
+# local CO2 X6 demo dumps
+examples/bseplot/co2_demo/WAVECAR
+examples/bseplot/co2_demo/AMAT.npz
+examples/bseplot/co2_demo/ref/*.vasp
+examples/tdm/vasp_optics/work/

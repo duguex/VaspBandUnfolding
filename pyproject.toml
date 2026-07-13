@@ -37,6 +37,10 @@ py-modules = [
   "bsefatband",
   "bsematrix",
   "wfull",
+  "waveder",
+  "spline",
+  "band_order",
+  "hse_kpts",
 ]
 script-files = [
   "bin/wfcplot",

@@ -1,0 +1,6 @@
+density_file=co2_x1_001_electron_rho.vasp
+n_floats_parsed=110616
+min=0.000000e+00
+max=4.800000e+01
+sum=1.795000e+02
+note=self-consistent CO2 BSE demo; not VASP BSE parity

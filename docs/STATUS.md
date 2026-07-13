@@ -6,8 +6,8 @@
 Last verified (local):
 
 ```text
-python scripts/smoke_examples.py   → pass=19 skip=0 fail=0
-PYTHONPATH=. python -m pytest tests/ -q  → 15 passed
+python scripts/smoke_examples.py   → pass=20 skip=0 fail=0
+PYTHONPATH=. python -m pytest tests/ -q  → 31 passed
 ```
 
 ## What is done
@@ -27,6 +27,8 @@ PYTHONPATH=. python -m pytest tests/ -q  → 15 passed
 | CO2 dipole gates | `examples/tdm/ref/l2_*.md` |
 | ELF vs ELFCAR | `examples/elf_test/ref/elf_vs_vasp.txt` |
 | Dual-frame NAC | `examples/nac/md_frames/` (gitignored) |
+| WAVEDER reader | `waveder.py` + `examples/tdm/compare_waveder.py` |
+| X6 CO2 demo | `examples/bseplot/co2_demo/` realspace pipeline |
 
 ## C1 smoke
 
@@ -39,7 +41,7 @@ See [`CITATION_POLICY.md`](CITATION_POLICY.md). Short version:
 - **Default BSE mode:** `pw_only` (CLI). `paw_*` and finite-q → **quarantine**.
 - **l2-partial (usable with caveats):** W1–W4, W6, B1, P1–P4, O1–O2, X1, X5, D1, D3, …
 - **experimental:** W5, B2–B5, P5, O3, X4, X6, D2, …
-- **Not full paper L2:** WAVEDER element-wise dipole; BSE paw/q parity; X6 without matching WAVECAR.
+- **Not full paper L2:** PS dipole ≠ WAVEDER CDER (PAW); BSE paw/direct/finite-q quarantine; MoSe2 X6 needs production WAVECAR.
 
 ## Large / proprietary (not in git)
 

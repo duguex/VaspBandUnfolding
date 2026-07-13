@@ -248,7 +248,7 @@ Companion: feature IDs and validation levels in [`FEATURES.md`](../FEATURES.md),
 | “Production BSE kernel (all modes)” | Only **`pw_only`** (l2-partial); never paw\*/finite-q as validated |
 | “ELF identical to VASP” | No — demo ELFCAR corr high but grid/order caveats remain |
 | “Unfolded EBS is AE-accurate” | No — PS spectral weights |
-| “Full L2 dipole vs VASP optics” | No until WAVEDER/element-wise matrix is gated |
+| “Full L2 dipole vs VASP optics” | No: PS p–r ≠ WAVEDER CDER (PAW-complete); reader is `waveder.py` |
 
 
 ## 10. Recording checklist (for any serious result)

@@ -28,7 +28,7 @@ Companion: [`FEATURES.md`](../FEATURES.md) · [`STATUS.md`](STATUS.md) · [`CITA
 | X3 | `examples/bsematrix/BP/` | `bash run.sh` | ok | quarantine | finite-q residual; do not cite |
 | X4 | `examples/wfull/` | `bash run.sh` | ok | experimental | New: screened potential (WFULL) |
 | X5 | `examples/bseplot/` | `bash run.sh` | ok | l2-partial | Extend existing: BSEFATBAND / exciton BZ |
-| X6 | `examples/bseplot/` | `bash run_realspace.sh` | skip | experimental | needs matching WAVECAR; `docs/repro/X6_exciton_rs.md` |
+| X6 | `examples/bseplot/co2_demo/` | `bash run_realspace.sh` | ok | l2-partial | self-consistent CO2 BSE→realspace; MoSe2 needs WAVECAR |
 | D1 | `examples/nac/` | `bash run.sh` | ok | l2-partial | dual-frame CO2 md_frames (local); max_abs_NAC~2 |
 | D2 | `examples/neb/` | `bash run.sh` | ok | experimental | New: NEB path PES with synthetic OUTCAR stubs |
 | D3 | `examples/ewald/` | `bash run.sh` | ok | l2-partial | Extend existing: Ewald / Madelung |

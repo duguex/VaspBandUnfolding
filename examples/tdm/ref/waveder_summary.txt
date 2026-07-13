@@ -1,0 +1,22 @@
+waveder_nbands=24
+waveder_nbands_cder=16
+nkpts=1 nspin=1 nocc=8
+nodes=8.824156
+cder_max_abs=2.169454e+01
+cder_finite=True
+occ_virt_pairs=128 both_significant=11
+floor_Ang=0.05 min_dE_eV=0.3
+both_median_rel=1.000001
+both_max_rel=1.631914
+top_both n m dE abs_ps abs_wd rel
+    7  15   10.0984 3.3863e-01 5.3588e-01 1.6319
+    3  11   13.1680 1.0904e+00 2.5732e-01 1.0000
+    3  24   16.4001 1.2634e-01 9.2670e-01 0.8637
+    7  13    9.9949 1.1520e-01 2.3029e-01 1.5002
+    2   9   27.0125 1.1439e-01 3.3770e-01 1.0000
+    3  15   14.8268 1.0002e-01 4.4971e-01 1.2224
+    8  21   11.5049 8.7264e-02 3.1378e-01 0.7219
+    2  18   30.2694 6.2650e-02 1.2788e+00 1.0490
+parse_ok=True
+overall_pass=True
+note=CDER is VASP optics (PAW-complete); PS p-r is not element-wise L2. Gate = decode + both-significant pairs exist.

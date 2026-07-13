@@ -1,29 +1,30 @@
 # X6: Exciton real-space density
 
-## Requirement
+## Runnable demo (CO2, self-consistent)
 
-`BSEFATBAND` + **matching** `WAVECAR` (+ `OUTCAR` for symmetry/IBZ) from the same BSE calculation.
+No external BSE WAVECAR required:
 
-Bundled under `examples/bseplot/`: `BSEFATBAND`, `OUTCAR`, `POSCAR` — **not** the production WAVECAR (size).
+```bash
+cd examples/bseplot/co2_demo
+bash run_realspace.sh
+# needs: examples/tdm/vasp_optics/work/{WAVECAR,OUTCAR} (local LOPTICS)
+```
 
-## How to run when you have WAVECAR
+Pipeline: `bsematrix` (`pw_only`, Hartree, ε=5) → `BSEFATBAND` → `bseplot realspace`.
+
+**Citation:** l2-partial (pipeline). **Not** VASP BSE parity for MoSe2.
+
+## MoSe2 / production BSE
+
+Bundled `examples/bseplot/BSEFATBAND` (+ comparison PNGs) still need the original
+matching WAVECAR (not in git). Set:
 
 ```bash
 export VBU_BSE_WAVECAR=/path/to/WAVECAR
-cd examples/bseplot
-bash run_realspace.sh
-# or:
-bseplot realspace --bsefatband BSEFATBAND --wavecar "$VBU_BSE_WAVECAR" \
-  --poscar POSCAR --exciton 1 --hole 0.5,0.5,0.5 --output-dir ref
+cd examples/bseplot && bash run_realspace.sh
 ```
 
-## BZ-only path (no WAVECAR)
+## Format fix
 
-```bash
-cd examples/bseplot && bash run.sh   # bseplot bz
-```
-
-## Status
-
-- **X5 bz**: ok / l2-partial  
-- **X6 realspace**: experimental until matching WAVECAR is supplied
+`bsematrix._write_bsefatband` writes `real +i* imag` with spaces so
+`bsefatband` can parse amplitudes (VASP-compatible field split).

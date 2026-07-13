@@ -2191,8 +2191,8 @@ def _write_bsefatband(
         handle.write(f"{ntrans:18d}{nwrite:18d}\n")
         for iexc in range(nwrite):
             handle.write(
-                f"{iexc + 1:6d}BSE eigenvalue{float(eigenvalues[iexc]):14.8f}"
-                f"      IP-eigenvalue:{float(ip_energies[iexc]):14.8f}\n"
+                f"{iexc + 1:6d}BSE eigenvalue{float(eigenvalues[iexc]):18.8f}"
+                f"      IP-eigenvalue:{float(ip_energies[min(iexc, len(ip_energies)-1)]):14.8f}\n"
             )
             vec = np.asarray(eigenvectors[:, iexc], dtype=np.complex128)
             for row_idx, pair in enumerate(pairs):
@@ -2202,7 +2202,7 @@ def _write_bsefatband(
                 handle.write(
                     f"{kx:9.5f}{ky:9.5f}{kz:9.5f}"
                     f"{pair.eps_v:14.7f}{pair.eps_c:14.7f}{column_weight:14.7f}"
-                    f"{pair.iv:6d}{pair.ic:6d}{amp.real:14.6f}+i* {amp.imag:12.6f}\n"
+                    f"{pair.iv:6d}{pair.ic:6d}{amp.real:14.6f} +i* {amp.imag:12.6f}\n"
                 )
 
 
