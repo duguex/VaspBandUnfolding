@@ -20,6 +20,7 @@
 
 - Full feature checklist (module / CLI / example / status): see [FEATURES.md](FEATURES.md).
 - Live status (smoke / citation snapshot): [docs/STATUS.md](docs/STATUS.md).
+- Remaining work: [docs/REMAINING_WORK.md](docs/REMAINING_WORK.md).
 - Development goals (scientific proof + reusable components): [docs/GOALS.md](docs/GOALS.md).
 - Expert seminar / full-coverage methods plan: [docs/ACADEMIC_ROADMAP.md](docs/ACADEMIC_ROADMAP.md).
 - Assumptions & limits registry: [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md).

@@ -167,5 +167,7 @@ When promoting an ID to L2, update `FEATURES.md` and add or link evidence in the
 
 ## Progress tracking
 
+Open tasks with acceptance criteria: [`REMAINING_WORK.md`](REMAINING_WORK.md).
+
 Engineering/citation **snapshot** (smoke counts, open gaps): [`STATUS.md`](STATUS.md).  
 Do not treat this goals file as a live dashboard.

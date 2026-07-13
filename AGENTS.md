@@ -23,6 +23,7 @@ Author: Qijing Zheng (zqj.kaka@gmail.com) · [GitHub](https://github.com/QijingZ
 - Expert academic roadmap (all feature IDs, seminars, validation levels): [`docs/ACADEMIC_ROADMAP.md`](docs/ACADEMIC_ROADMAP.md)
 - Assumptions & interpretation limits: [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md)
 - Citation policy (what you may claim): [`docs/CITATION_POLICY.md`](docs/CITATION_POLICY.md)
+- Remaining work (open milestones): [`docs/REMAINING_WORK.md`](docs/REMAINING_WORK.md)
 
 ## Collaboration & Git policy (mandatory)
 

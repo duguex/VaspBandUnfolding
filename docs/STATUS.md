@@ -3,6 +3,8 @@
 **Branch (personal fork):** `feature/c1-c2-examples` → `duguex/VaspBandUnfolding`  
 **Policy:** local + fork only; **no PRs** to `QijingZheng/VaspBandUnfolding` unless explicitly requested.
 
+**What is still open (detailed):** [`REMAINING_WORK.md`](REMAINING_WORK.md)
+
 Last verified (local):
 
 ```text
