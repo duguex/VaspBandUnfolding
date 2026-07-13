@@ -4,3 +4,13 @@ PyVaspWfc.*/
 dist/
 *.swp
 .DS_Store
+
+# VASP proprietary source / builds (never commit)
+vasp.5.4.4.pl2.tgz
+vasp.5.4.4.pl2/
+third_party/vasp.5.4.4.pl2/
+third_party/vasp_patch_backups/
+third_party/NAMDwithSOC/
+third_party/vasp*/
+*.o
+*.mod
