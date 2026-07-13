@@ -59,3 +59,4 @@ print(f"ELFCAR: ngrid={ngrid}, data_points={len(vals)}, "
 PY
 
 echo "elf_test PASS"
+python compare_elf.py

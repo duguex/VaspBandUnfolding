@@ -2209,6 +2209,9 @@ def _write_bsefatband(
 def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     """Build the command-line interface for the standalone script."""
     parser = argparse.ArgumentParser(
+        epilog="WARNING: paw_orth_only/paw_full and finite-q are quarantine vs VASP BP tables; prefer --mode pw_only. See docs/CITATION_POLICY.md.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        
         description="Build Hartree/direct BSE matrix elements using the local full-grid path.",
         formatter_class=_DefaultsFormatter,
     )
@@ -2217,7 +2220,7 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument("--kpoints", default="KPOINTS", help="Path to KPOINTS")
     parser.add_argument("--poscar", default="POSCAR", help="Path to POSCAR")
     parser.add_argument("--potcar", default="POTCAR", help="Path to POTCAR")
-    parser.add_argument("--mode", choices=["pw_only", "paw_orth_only", "paw_full"], default="paw_orth_only", help="Matrix construction mode")
+    parser.add_argument("--mode", choices=["pw_only", "paw_orth_only", "paw_full"], default="pw_only", help="Matrix construction mode (default pw_only: best-validated; paw_* / finite-q are quarantine — see docs/CITATION_POLICY.md)")
     parser.add_argument("--interaction", choices=["hartree", "direct", "both"], default="hartree", help="Which interaction term to assemble")
     parser.add_argument("--q-ext", nargs=3, type=float, metavar=("QX", "QY", "QZ"), default=[0.0, 0.0, 0.0], help="External exciton momentum in fractional reciprocal coordinates")
     parser.add_argument("--vb-num", type=int, required=True, help="Number of valence bands")

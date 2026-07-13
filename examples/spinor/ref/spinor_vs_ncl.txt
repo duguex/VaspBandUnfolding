@@ -1,0 +1,7 @@
+ncl_nb=272 sm_nb=272
+eig_mae_all=4.566144e-03
+eig_max_all=4.254255e-02
+eig_mae_[80:160]=3.665505e-03
+ncl_efermi=-0.5287246438405651
+sm_efermi=-0.621907714454748
+note=second-variation spinormaker vs SCF ncl+LSORBIT; not expected identical

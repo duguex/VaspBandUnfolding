@@ -16,7 +16,7 @@ Companion: [`FEATURES.md`](../FEATURES.md) · [`ASSUMPTIONS.md`](ASSUMPTIONS.md)
 | W1–W3 | WAVECAR / real-space PS | **l2-partial** | `examples/wfc_r` smoke + widespread use |
 | W4 | PS dipole | **l2-partial** | `examples/tdm/ref/l2_table.md` (CO2 gates) |
 | W5 | IPR | **experimental** | analytic/demo only |
-| W6 | ELF | **experimental / quarantine** | unvalidated vs ELFCAR |
+| W6 | ELF | **l2-partial** | `examples/elf_test/ref/elf_vs_vasp.txt` corr≳0.98 on demo |
 | B1–B2 | Unfold | **l2-partial** | npy/EBS demos; PS-only weights |
 | B3 | Band reorder | **experimental** | works on multi-k WAVECAR |
 | B4 | PROCAR | **experimental** | parse demo |
@@ -24,9 +24,9 @@ Companion: [`FEATURES.md`](../FEATURES.md) · [`ASSUMPTIONS.md`](ASSUMPTIONS.md)
 | P1–P3 | POTCAR / projectors / Qij | **l2-partial** | NormalCar suite |
 | P4 | AE wfc | **l2-partial** | CO2 + pySBT |
 | P5 | AE dipole | **experimental** | no L2 table yet |
-| O1–O2 | SOC matrix / spinormaker | **l2-partial** | local patched VASP dumps + spinor read |
+| O1–O2 | SOC matrix / spinormaker | **l2-partial** | dumps+spinormaker; vs SCF ncl MAE~5 meV (`ref/spinor_vs_ncl.txt`) |
 | O3 | MAE helpers | **experimental** | not gated |
-| X1 | BSE `pw_only` | **l2-partial → cite BP tables carefully** | `examples/bsematrix/BP` |
+| X1 | BSE `pw_only` | **l2-partial** (default CLI mode) | BP tables; CLI default `pw_only` |
 | X2–X3 | BSE paw / finite-q | **quarantine** | large residuals |
 | X4 | WFULL reader | **experimental** | infra |
 | X5 | Exciton BZ | **l2-partial** | `bseplot` demo |

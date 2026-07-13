@@ -7,7 +7,7 @@
 | W3 | `examples/wfc_r/` | `bash run.sh` | ok | l2-partial | Extend existing: real-space PS wavefunction |
 | W4 | `examples/tdm/` | `bash run.sh` | ok | l2-partial | CO2 gates in ref/l2_table.md; see docs/CITATION_POLICY.md |
 | W5 | `examples/ipr/` | `bash run.sh` | ok | experimental | New: inverse participation ratio |
-| W6 | `examples/elf_test/` | `bash run.sh` | ok | experimental | ELF from WAVECAR; ELFCAR metric in ref; quarantine |
+| W6 | `examples/elf_test/` | `bash run.sh` | ok | l2-partial | vs ELFCAR corr~0.986; see ref/elf_vs_vasp.txt |
 | B1 | `examples/unfold/sup_3x3x1/` | `bash run.sh` | ok | l2-partial | spectral_weight.npy shape/sum metric in ref |
 | B2 | `examples/unfold/Ce@BL-MoS2_3x3x1/` | `bash run.sh` | ok | experimental | sw.npy + awht.npy shapes in ref |
 | B3 | `examples/band_reorder/` | `bash run.sh` | ok | experimental | multi-k reorder via wfc_r WAVECAR symlink; PS overlaps; see ASSUMPTIONS |
@@ -22,8 +22,8 @@
 | O2 | `examples/spinor/` | `bash run.sh` | ok | l2-partial | spinormaker built WAVECAR_spinor; readable via vaspwfc(lsorbit=True) |
 | O3 | `examples/spinor/` | `bash run.sh` | ok | experimental | dumps present; MAE helpers not separately gated |
 | X1 | `examples/bsematrix/BP/` | `bash run.sh` | ok | l2-partial | counts lines in py_pw_only_both_AMAT.txt to ref |
-| X2 | `examples/bsematrix/BP/` | `bash run.sh` | ok | l2-partial | shares X1 runner; AMAT text artifacts present |
-| X3 | `examples/bsematrix/BP/` | `bash run.sh` | ok | experimental | shares X1 runner; finite-q AMATs in directory; quarantine |
+| X2 | `examples/bsematrix/BP/` | `bash run.sh` | ok | quarantine | paw_* residual large; CLI default pw_only |
+| X3 | `examples/bsematrix/BP/` | `bash run.sh` | ok | quarantine | finite-q residual; do not cite |
 | X4 | `examples/wfull/` | `bash run.sh` | ok | experimental | New: screened potential (WFULL) |
 | X5 | `examples/bseplot/` | `bash run.sh` | ok | l2-partial | Extend existing: BSEFATBAND / exciton BZ |
 | X6 | `examples/bseplot/` | `bash run.sh` | skip | repro-pending | realspace needs WAVECAR not bundled (see docs/repro/X6.md) |

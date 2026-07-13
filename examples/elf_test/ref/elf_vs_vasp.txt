@@ -1,0 +1,8 @@
+grid=20x20x150
+corr=0.985881
+mae=2.341662e-02
+max_abs=4.031220e-01
+gate_corr=True
+gate_mae=True
+overall_pass=True
+citation=l2-partial
